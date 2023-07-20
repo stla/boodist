@@ -10,6 +10,132 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// rcpp_dgumbel
+Rcpp::NumericVector rcpp_dgumbel(Rcpp::NumericVector x, double a, double b, bool log);
+RcppExport SEXP _boodist_rcpp_dgumbel(SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP logSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_dgumbel(x, a, b, log));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pgumbel
+Rcpp::NumericVector rcpp_pgumbel(Rcpp::NumericVector q, double a, double b, bool lower);
+RcppExport SEXP _boodist_rcpp_pgumbel(SEXP qSEXP, SEXP aSEXP, SEXP bSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_pgumbel(q, a, b, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_qgumbel
+Rcpp::NumericVector rcpp_qgumbel(Rcpp::NumericVector p, double a, double b, bool lower);
+RcppExport SEXP _boodist_rcpp_qgumbel(SEXP pSEXP, SEXP aSEXP, SEXP bSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_qgumbel(p, a, b, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_mean
+double gumbel_mean(double a, double b);
+RcppExport SEXP _boodist_gumbel_mean(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_mean(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_median
+double gumbel_median(double a, double b);
+RcppExport SEXP _boodist_gumbel_median(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_median(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_mode
+double gumbel_mode(double a, double b);
+RcppExport SEXP _boodist_gumbel_mode(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_mode(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_sd
+double gumbel_sd(double a, double b);
+RcppExport SEXP _boodist_gumbel_sd(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_sd(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_skewness
+double gumbel_skewness(double a, double b);
+RcppExport SEXP _boodist_gumbel_skewness(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_skewness(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_kurtosis
+double gumbel_kurtosis(double a, double b);
+RcppExport SEXP _boodist_gumbel_kurtosis(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_kurtosis(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gumbel_kurtosis_excess
+double gumbel_kurtosis_excess(double a, double b);
+RcppExport SEXP _boodist_gumbel_kurtosis_excess(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(gumbel_kurtosis_excess(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_dt
 Rcpp::NumericVector rcpp_dt(Rcpp::NumericVector x, double nu, double delta);
 RcppExport SEXP _boodist_rcpp_dt(SEXP xSEXP, SEXP nuSEXP, SEXP deltaSEXP) {
@@ -101,6 +227,16 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_boodist_rcpp_dgumbel", (DL_FUNC) &_boodist_rcpp_dgumbel, 4},
+    {"_boodist_rcpp_pgumbel", (DL_FUNC) &_boodist_rcpp_pgumbel, 4},
+    {"_boodist_rcpp_qgumbel", (DL_FUNC) &_boodist_rcpp_qgumbel, 4},
+    {"_boodist_gumbel_mean", (DL_FUNC) &_boodist_gumbel_mean, 2},
+    {"_boodist_gumbel_median", (DL_FUNC) &_boodist_gumbel_median, 2},
+    {"_boodist_gumbel_mode", (DL_FUNC) &_boodist_gumbel_mode, 2},
+    {"_boodist_gumbel_sd", (DL_FUNC) &_boodist_gumbel_sd, 2},
+    {"_boodist_gumbel_skewness", (DL_FUNC) &_boodist_gumbel_skewness, 2},
+    {"_boodist_gumbel_kurtosis", (DL_FUNC) &_boodist_gumbel_kurtosis, 2},
+    {"_boodist_gumbel_kurtosis_excess", (DL_FUNC) &_boodist_gumbel_kurtosis_excess, 2},
     {"_boodist_rcpp_dt", (DL_FUNC) &_boodist_rcpp_dt, 3},
     {"_boodist_rcpp_pt", (DL_FUNC) &_boodist_rcpp_pt, 4},
     {"_boodist_rcpp_qt", (DL_FUNC) &_boodist_rcpp_qt, 4},

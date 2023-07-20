@@ -5,5 +5,6 @@
 #include <boost/math/distributions/complement.hpp>
 #include <boost/math/distributions/non_central_t.hpp>
 #include <boost/math/distributions/non_central_chi_squared.hpp>
+#include <boost/math/distributions/extreme_value.hpp>
 
 #endif
