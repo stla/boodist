@@ -47,3 +47,17 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# C files
+src/*.o
+src/*.so
+src/*.dll
+src-i386/
+src-x64/
+src/compile_flags.txt
+src/Makevars
+
+# other
+inst/trash/
+Rplot.png
+x.svg
