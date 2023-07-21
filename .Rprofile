@@ -4,10 +4,10 @@ dllunload <- function(){
   )
 }
 
-myinstall <- function() {
+myinstall <- function(restart = FALSE) {
   try(pkgload::unload("boodist"))
   try(dllunload())
-  if(rstudioapi::isAvailable()) {
+  if(restart && rstudioapi::isAvailable()) {
     rstudioapi::restartSession(
       "devtools::install(quick = TRUE, keep_source = TRUE)"
     )
@@ -16,8 +16,8 @@ myinstall <- function() {
   }
 }
 
-mydocument <- function() {
-  if(rstudioapi::isAvailable()) {
+mydocument <- function(restart = FALSE) {
+  if(restart && rstudioapi::isAvailable()) {
     rstudioapi::restartSession(
       "roxygen2::roxygenise(load_code = roxygen2::load_installed)"
     )
