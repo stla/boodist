@@ -338,6 +338,132 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_dig
+Rcpp::NumericVector rcpp_dig(Rcpp::NumericVector x, double mu, double lambda, bool log);
+RcppExport SEXP _boodist_rcpp_dig(SEXP xSEXP, SEXP muSEXP, SEXP lambdaSEXP, SEXP logSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_dig(x, mu, lambda, log));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pig
+Rcpp::NumericVector rcpp_pig(Rcpp::NumericVector q, double mu, double lambda, bool lower);
+RcppExport SEXP _boodist_rcpp_pig(SEXP qSEXP, SEXP muSEXP, SEXP lambdaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_pig(q, mu, lambda, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_qig
+Rcpp::NumericVector rcpp_qig(Rcpp::NumericVector p, double mu, double lambda, bool lower);
+RcppExport SEXP _boodist_rcpp_qig(SEXP pSEXP, SEXP muSEXP, SEXP lambdaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_qig(p, mu, lambda, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_mean
+double ig_mean(double mu, double lambda);
+RcppExport SEXP _boodist_ig_mean(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_mean(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_median
+double ig_median(double mu, double lambda);
+RcppExport SEXP _boodist_ig_median(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_median(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_mode
+double ig_mode(double mu, double lambda);
+RcppExport SEXP _boodist_ig_mode(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_mode(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_variance
+double ig_variance(double mu, double lambda);
+RcppExport SEXP _boodist_ig_variance(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_variance(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_skewness
+double ig_skewness(double mu, double lambda);
+RcppExport SEXP _boodist_ig_skewness(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_skewness(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_kurtosis
+double ig_kurtosis(double mu, double lambda);
+RcppExport SEXP _boodist_ig_kurtosis(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_kurtosis(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ig_kurtosis_excess
+double ig_kurtosis_excess(double mu, double lambda);
+RcppExport SEXP _boodist_ig_kurtosis_excess(SEXP muSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ig_kurtosis_excess(mu, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_boodist_rcpp_dgumbel", (DL_FUNC) &_boodist_rcpp_dgumbel, 4},
@@ -366,6 +492,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_hexp_skewness", (DL_FUNC) &_boodist_hexp_skewness, 2},
     {"_boodist_hexp_kurtosis", (DL_FUNC) &_boodist_hexp_kurtosis, 2},
     {"_boodist_hexp_kurtosis_excess", (DL_FUNC) &_boodist_hexp_kurtosis_excess, 2},
+    {"_boodist_rcpp_dig", (DL_FUNC) &_boodist_rcpp_dig, 4},
+    {"_boodist_rcpp_pig", (DL_FUNC) &_boodist_rcpp_pig, 4},
+    {"_boodist_rcpp_qig", (DL_FUNC) &_boodist_rcpp_qig, 4},
+    {"_boodist_ig_mean", (DL_FUNC) &_boodist_ig_mean, 2},
+    {"_boodist_ig_median", (DL_FUNC) &_boodist_ig_median, 2},
+    {"_boodist_ig_mode", (DL_FUNC) &_boodist_ig_mode, 2},
+    {"_boodist_ig_variance", (DL_FUNC) &_boodist_ig_variance, 2},
+    {"_boodist_ig_skewness", (DL_FUNC) &_boodist_ig_skewness, 2},
+    {"_boodist_ig_kurtosis", (DL_FUNC) &_boodist_ig_kurtosis, 2},
+    {"_boodist_ig_kurtosis_excess", (DL_FUNC) &_boodist_ig_kurtosis_excess, 2},
     {NULL, NULL, 0}
 };
 

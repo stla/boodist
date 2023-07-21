@@ -105,3 +105,43 @@ hexp_kurtosis_excess <- function(probs, rates) {
     .Call(`_boodist_hexp_kurtosis_excess`, probs, rates)
 }
 
+rcpp_dig <- function(x, mu, lambda, log) {
+    .Call(`_boodist_rcpp_dig`, x, mu, lambda, log)
+}
+
+rcpp_pig <- function(q, mu, lambda, lower) {
+    .Call(`_boodist_rcpp_pig`, q, mu, lambda, lower)
+}
+
+rcpp_qig <- function(p, mu, lambda, lower) {
+    .Call(`_boodist_rcpp_qig`, p, mu, lambda, lower)
+}
+
+ig_mean <- function(mu, lambda) {
+    .Call(`_boodist_ig_mean`, mu, lambda)
+}
+
+ig_median <- function(mu, lambda) {
+    .Call(`_boodist_ig_median`, mu, lambda)
+}
+
+ig_mode <- function(mu, lambda) {
+    .Call(`_boodist_ig_mode`, mu, lambda)
+}
+
+ig_variance <- function(mu, lambda) {
+    .Call(`_boodist_ig_variance`, mu, lambda)
+}
+
+ig_skewness <- function(mu, lambda) {
+    .Call(`_boodist_ig_skewness`, mu, lambda)
+}
+
+ig_kurtosis <- function(mu, lambda) {
+    .Call(`_boodist_ig_kurtosis`, mu, lambda)
+}
+
+ig_kurtosis_excess <- function(mu, lambda) {
+    .Call(`_boodist_ig_kurtosis_excess`, mu, lambda)
+}
+
