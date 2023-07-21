@@ -213,6 +213,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// t_kurtosis
+double t_kurtosis(double nu, double delta);
+RcppExport SEXP _boodist_t_kurtosis(SEXP nuSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type nu(nuSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(t_kurtosis(nu, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
 // t_kurtosis_excess
 double t_kurtosis_excess(double nu, double delta);
 RcppExport SEXP _boodist_t_kurtosis_excess(SEXP nuSEXP, SEXP deltaSEXP) {
@@ -482,6 +494,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_t_mean", (DL_FUNC) &_boodist_t_mean, 2},
     {"_boodist_t_variance", (DL_FUNC) &_boodist_t_variance, 2},
     {"_boodist_t_skewness", (DL_FUNC) &_boodist_t_skewness, 2},
+    {"_boodist_t_kurtosis", (DL_FUNC) &_boodist_t_kurtosis, 2},
     {"_boodist_t_kurtosis_excess", (DL_FUNC) &_boodist_t_kurtosis_excess, 2},
     {"_boodist_rcpp_dhexp", (DL_FUNC) &_boodist_rcpp_dhexp, 3},
     {"_boodist_rcpp_phexp", (DL_FUNC) &_boodist_rcpp_phexp, 4},

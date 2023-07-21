@@ -65,6 +65,10 @@ t_skewness <- function(nu, delta) {
     .Call(`_boodist_t_skewness`, nu, delta)
 }
 
+t_kurtosis <- function(nu, delta) {
+    .Call(`_boodist_t_kurtosis`, nu, delta)
+}
+
 t_kurtosis_excess <- function(nu, delta) {
     .Call(`_boodist_t_kurtosis_excess`, nu, delta)
 }

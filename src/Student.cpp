@@ -70,6 +70,12 @@ double t_skewness(double nu, double delta) {
 }
 
 // [[Rcpp::export]]
+double t_kurtosis(double nu, double delta) {
+  boost::math::non_central_t dist(nu, delta);
+  return kurtosis(dist);
+}
+
+// [[Rcpp::export]]
 double t_kurtosis_excess(double nu, double delta) {
   boost::math::non_central_t dist(nu, delta);
   return kurtosis_excess(dist);

@@ -46,14 +46,14 @@ New Gumbel distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{a}}{location parameter}
+\item{\code{a}}{parameter}
 
-\item{\code{b}}{scale parameter, \code{>0}}
+\item{\code{b}}{parameter, \code{>0}}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-An \code{inverseGaussian} object.
+A \code{Gumbel} object.
 }
 }
 \if{html}{\out{<hr>}}
