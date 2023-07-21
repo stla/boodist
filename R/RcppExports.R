@@ -69,3 +69,39 @@ t_kurtosis_excess <- function(nu, delta) {
     .Call(`_boodist_t_kurtosis_excess`, nu, delta)
 }
 
+rcpp_dhexp <- function(x, probs, rates) {
+    .Call(`_boodist_rcpp_dhexp`, x, probs, rates)
+}
+
+rcpp_phexp <- function(q, probs, rates, lower) {
+    .Call(`_boodist_rcpp_phexp`, q, probs, rates, lower)
+}
+
+rcpp_qhexp <- function(p, probs, rates, lower) {
+    .Call(`_boodist_rcpp_qhexp`, p, probs, rates, lower)
+}
+
+hexp_mean <- function(probs, rates) {
+    .Call(`_boodist_hexp_mean`, probs, rates)
+}
+
+hexp_mode <- function(probs, rates) {
+    .Call(`_boodist_hexp_mode`, probs, rates)
+}
+
+hexp_variance <- function(probs, rates) {
+    .Call(`_boodist_hexp_variance`, probs, rates)
+}
+
+hexp_skewness <- function(probs, rates) {
+    .Call(`_boodist_hexp_skewness`, probs, rates)
+}
+
+hexp_kurtosis <- function(probs, rates) {
+    .Call(`_boodist_hexp_kurtosis`, probs, rates)
+}
+
+hexp_kurtosis_excess <- function(probs, rates) {
+    .Call(`_boodist_hexp_kurtosis_excess`, probs, rates)
+}
+

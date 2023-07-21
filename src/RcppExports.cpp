@@ -225,6 +225,119 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_dhexp
+Rcpp::NumericVector rcpp_dhexp(Rcpp::NumericVector x, Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_rcpp_dhexp(SEXP xSEXP, SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_dhexp(x, probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_phexp
+Rcpp::NumericVector rcpp_phexp(Rcpp::NumericVector q, Rcpp::NumericVector probs, Rcpp::NumericVector rates, bool lower);
+RcppExport SEXP _boodist_rcpp_phexp(SEXP qSEXP, SEXP probsSEXP, SEXP ratesSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_phexp(q, probs, rates, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_qhexp
+Rcpp::NumericVector rcpp_qhexp(Rcpp::NumericVector p, Rcpp::NumericVector probs, Rcpp::NumericVector rates, bool lower);
+RcppExport SEXP _boodist_rcpp_qhexp(SEXP pSEXP, SEXP probsSEXP, SEXP ratesSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_qhexp(p, probs, rates, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_mean
+double hexp_mean(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_mean(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_mean(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_mode
+double hexp_mode(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_mode(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_mode(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_variance
+double hexp_variance(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_variance(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_variance(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_skewness
+double hexp_skewness(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_skewness(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_skewness(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_kurtosis
+double hexp_kurtosis(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_kurtosis(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_kurtosis(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hexp_kurtosis_excess
+double hexp_kurtosis_excess(Rcpp::NumericVector probs, Rcpp::NumericVector rates);
+RcppExport SEXP _boodist_hexp_kurtosis_excess(SEXP probsSEXP, SEXP ratesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probs(probsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rates(ratesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hexp_kurtosis_excess(probs, rates));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_boodist_rcpp_dgumbel", (DL_FUNC) &_boodist_rcpp_dgumbel, 4},
@@ -244,6 +357,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_t_variance", (DL_FUNC) &_boodist_t_variance, 2},
     {"_boodist_t_skewness", (DL_FUNC) &_boodist_t_skewness, 2},
     {"_boodist_t_kurtosis_excess", (DL_FUNC) &_boodist_t_kurtosis_excess, 2},
+    {"_boodist_rcpp_dhexp", (DL_FUNC) &_boodist_rcpp_dhexp, 3},
+    {"_boodist_rcpp_phexp", (DL_FUNC) &_boodist_rcpp_phexp, 4},
+    {"_boodist_rcpp_qhexp", (DL_FUNC) &_boodist_rcpp_qhexp, 4},
+    {"_boodist_hexp_mean", (DL_FUNC) &_boodist_hexp_mean, 2},
+    {"_boodist_hexp_mode", (DL_FUNC) &_boodist_hexp_mode, 2},
+    {"_boodist_hexp_variance", (DL_FUNC) &_boodist_hexp_variance, 2},
+    {"_boodist_hexp_skewness", (DL_FUNC) &_boodist_hexp_skewness, 2},
+    {"_boodist_hexp_kurtosis", (DL_FUNC) &_boodist_hexp_kurtosis, 2},
+    {"_boodist_hexp_kurtosis_excess", (DL_FUNC) &_boodist_hexp_kurtosis_excess, 2},
     {NULL, NULL, 0}
 };
 
