@@ -10,21 +10,12 @@ rig <- function(n, mu, lambda) {
   ifelse(z < 1/(1+x), x, 1/x) * mu
 }
 
-#' @importFrom stats rnorm
-#' @noRd
-rnig <- function(n, alpha, beta, delta, mu) {
-  stopifnot(alpha > beta)
-  stopifnot(delta > 0)
-  z <- rig(n, delta, sqrt(alpha*alpha - beta*beta))
-  rnorm(n, mu + beta*z, sqrt(z))
-}
-
 #' @title Inverse Gaussian distribution
 #' @description A R6 class to represent an inverse Gaussian distribution.
 #' @export
 #' @importFrom R6 R6Class
-inverseGaussian <- R6Class(
-  "inverseGaussian",
+InverseGaussian <- R6Class(
+  "InverseGaussian",
 
   private = list(
     ".mu"     = NA_real_,

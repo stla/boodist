@@ -2,8 +2,9 @@
 
 export(Gumbel)
 export(Hyperexponential)
+export(InverseGaussian)
+export(NormalInverseGaussian)
 export(Student)
-export(inverseGaussian)
 importFrom(R6,R6Class)
 importFrom(Rcpp,evalCpp)
 importFrom(stats,rexp)
