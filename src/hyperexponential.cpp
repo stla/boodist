@@ -6,11 +6,9 @@ Rcpp::NumericVector rcpp_dhexp(
 ){
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
   int n = x.size();
   Rcpp::NumericVector out(n);
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(probs, rts);
   for(int i = 0; i < n; i++) {
     out(i) = boost::math::pdf(dist, x(i));
   }
@@ -24,11 +22,9 @@ Rcpp::NumericVector rcpp_phexp(
 ){
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
   int n = q.size();
   Rcpp::NumericVector out(n);
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   if(lower) {
     for(int i = 0; i < n; i++) {
       out(i) = boost::math::cdf(dist, q(i));
@@ -48,11 +44,9 @@ Rcpp::NumericVector rcpp_qhexp(
 ){
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* pr = prbs.data();
-  const double* lambda = rts.data();
   int n = p.size();
   Rcpp::NumericVector out(n);
-  boost::math::hyperexponential dist(pr, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   if(lower) {
     for(int i = 0; i < n; i++) {
       out(i) = boost::math::quantile(dist, p(i));
@@ -69,9 +63,7 @@ Rcpp::NumericVector rcpp_qhexp(
 double hexp_mean(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return mean(dist);
 }
 
@@ -79,9 +71,7 @@ double hexp_mean(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
 double hexp_mode(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double *p = prbs.data();
-  const double *lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return mode(dist);
 }
 
@@ -89,9 +79,7 @@ double hexp_mode(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
 double hexp_variance(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return variance(dist);
 }
 
@@ -99,9 +87,7 @@ double hexp_variance(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
 double hexp_skewness(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return skewness(dist);
 }
 
@@ -109,9 +95,7 @@ double hexp_skewness(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
 double hexp_kurtosis(Rcpp::NumericVector probs, Rcpp::NumericVector rates) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return kurtosis(dist);
 }
 
@@ -121,8 +105,6 @@ double hexp_kurtosis_excess(
 ) {
   std::vector<double> prbs(probs.begin(), probs.end());
   std::vector<double> rts(rates.begin(), rates.end());
-  const double* p = prbs.data();
-  const double* lambda = rts.data();
-  boost::math::hyperexponential dist(p, lambda);
+  boost::math::hyperexponential dist(prbs, rts);
   return kurtosis_excess(dist);
 }

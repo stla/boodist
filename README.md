@@ -7,3 +7,5 @@
 ___
 
 ![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/Gumbel.png)
+
+![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/hyperexponential.png)
