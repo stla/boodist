@@ -42,12 +42,12 @@ Gumbel <- R6Class(
   public = list(
 
     #' @description New Gumbel distribution.
-    #' @param a parameter
-    #' @param b parameter, \code{>0}
+    #' @param a location parameter
+    #' @param b scale parameter, \code{>0}
     #' @return A \code{Gumbel} object.
     "initialize" = function(a, b) {
       stopifnot(b > 0)
-      private[[".a"]]     <- a
+      private[[".a"]] <- a
       private[[".b"]] <- b
     },
 

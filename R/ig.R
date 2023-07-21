@@ -128,6 +128,12 @@ inverseGaussian <- R6Class(
       ig_mode(mu, lambda)
     },
 
+    #' @description Standard deviation of the inverse Gaussian distribution.
+    #' @return The standard deviation of the inverse Gaussian distribution.
+    "sd" = function() {
+      sqrt(self$variance())
+    },
+
     #' @description Variance of the inverse Gaussian distribution.
     #' @return The variance of the inverse Gaussian distribution.
     "variance" = function() {

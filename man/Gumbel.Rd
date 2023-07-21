@@ -46,9 +46,9 @@ New Gumbel distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{a}}{parameter}
+\item{\code{a}}{location parameter}
 
-\item{\code{b}}{parameter, \code{>0}}
+\item{\code{b}}{scale parameter, \code{>0}}
 }
 \if{html}{\out{</div>}}
 }

@@ -26,6 +26,7 @@ A R6 class to represent an inverse Gaussian distribution.
 \item \href{#method-inverseGaussian-mean}{\code{inverseGaussian$mean()}}
 \item \href{#method-inverseGaussian-median}{\code{inverseGaussian$median()}}
 \item \href{#method-inverseGaussian-mode}{\code{inverseGaussian$mode()}}
+\item \href{#method-inverseGaussian-sd}{\code{inverseGaussian$sd()}}
 \item \href{#method-inverseGaussian-variance}{\code{inverseGaussian$variance()}}
 \item \href{#method-inverseGaussian-skewness}{\code{inverseGaussian$skewness()}}
 \item \href{#method-inverseGaussian-kurtosis}{\code{inverseGaussian$kurtosis()}}
@@ -179,6 +180,19 @@ Mode of the inverse Gaussian distribution.
 
 \subsection{Returns}{
 The mode of the inverse Gaussian distribution.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-inverseGaussian-sd"></a>}}
+\if{latex}{\out{\hypertarget{method-inverseGaussian-sd}{}}}
+\subsection{Method \code{sd()}}{
+Standard deviation of the inverse Gaussian distribution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{inverseGaussian$sd()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+The standard deviation of the inverse Gaussian distribution.
 }
 }
 \if{html}{\out{<hr>}}

@@ -2,6 +2,7 @@
 #' @description A R6 class to represent a Student distribution.
 #' @export
 #' @importFrom R6 R6Class
+#' @importFrom stats rt
 Student <- R6Class(
   "Student",
 
@@ -109,7 +110,7 @@ Student <- R6Class(
     #' @description Standard deviation of the Student distribution.
     #' @return The standard deviation of the Student distribution.
     "sd" = function() {
-      sqrt(self$sd())
+      sqrt(self$variance())
     },
 
     #' @description Variance of the Student distribution.
