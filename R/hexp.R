@@ -61,7 +61,7 @@ Hyperexponential <- R6Class(
     "d" = function(x) {
       probs <- private[[".probs"]]
       rates <- private[[".rates"]]
-      rcpp_dhexp(x, nu, delta)
+      rcpp_dhexp(x, probs, rates)
     },
 
     #' @description Cumulative distribution function of the Hyperexponential
@@ -72,7 +72,7 @@ Hyperexponential <- R6Class(
     "p" = function(q, lower = TRUE) {
       probs <- private[[".probs"]]
       rates <- private[[".rates"]]
-      rcpp_phexp(q, nu, delta, lower)
+      rcpp_phexp(q, probs, rates, lower)
     },
 
     #' @description Quantile function of the hyperexponential distribution.
@@ -82,7 +82,7 @@ Hyperexponential <- R6Class(
     "q" = function(p, lower = TRUE) {
       probs <- private[[".probs"]]
       rates <- private[[".rates"]]
-      rcpp_qhexp(p, nu, delta, lower)
+      rcpp_qhexp(p, probs, rates, lower)
     },
 
     #' @description Sampling from the hyperexponential distribution.
