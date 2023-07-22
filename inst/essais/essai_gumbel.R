@@ -15,7 +15,7 @@ plot(
 axis(1L)
 
 
-svg("x.svg")
+svg("x.svg", width = 8, height = 4)
 opar <- par(mar = c(3, 1, 3, 1))
 plot(
   x, y, type = "l", xlab = NA, ylab = NA, axes = FALSE,
@@ -25,5 +25,5 @@ plot(
 axis(1L)
 dev.off()
 
-rsvg::rsvg_png("x.svg", "Gumbel.png", width = 512, height = 512)
+rsvg::rsvg_png("x.svg", "Gumbel.png", width = 512, height = 256)
 
