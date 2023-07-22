@@ -3,7 +3,7 @@ rskewNormal <- function(n, xi, omega, alpha) {
   z <- rnorm(n)
   u <- runif(n)
   epsilon <- 2L*as.integer(u < pnorm(-alpha*z)) - 1L
-  xi + omega * epsilon * z
+  xi - omega * epsilon * z
 }
 
 #' @title Skew normal distribution
