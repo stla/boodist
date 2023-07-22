@@ -12,13 +12,14 @@
 #' @export
 #'
 #' @examples
-#' ncp <- findChi2ncp(1, 3, 0.1)
+#' library(boodist)
+#' ncp <- findChi2ncp(df = 1, q = 3, p = 0.1)
 #' pchisq(3, df = 1, ncp = ncp) # should be 0.1
 findChi2ncp <- function(df, q, p) {
   stopifnot(df > 0)
   stopifnot(q >= 0)
   stopifnot(p >= 0, p <= 1)
-  find_chisq_ncp(nu, q, p)
+  find_chisq_ncp(df, q, p)
 }
 
 #' @title Find degrees of freedom
@@ -36,6 +37,7 @@ findChi2ncp <- function(df, q, p) {
 #' @export
 #'
 #' @examples
+#' library(boodist)
 #' nu <- findChi2df(ncp = 10, q = 3, p = 0.1)
 #' pchisq(3, df = nu, ncp = 10) # should be 0.1
 findChi2df <- function(ncp, q, p) {

@@ -23,6 +23,7 @@ Find the non-centrality parameter of a Chi-squared distribution
   given a quantile, its corresponding probability, and the degrees of freedom.
 }
 \examples{
-ncp <- findChi2ncp(1, 3, 0.1)
+library(boodist)
+ncp <- findChi2ncp(df = 1, q = 3, p = 0.1)
 pchisq(3, df = 1, ncp = ncp) # should be 0.1
 }

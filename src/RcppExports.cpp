@@ -237,6 +237,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// find_chisq_ncp
+double find_chisq_ncp(double nu, double q, double p);
+RcppExport SEXP _boodist_find_chisq_ncp(SEXP nuSEXP, SEXP qSEXP, SEXP pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type nu(nuSEXP);
+    Rcpp::traits::input_parameter< double >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_chisq_ncp(nu, q, p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// find_chisq_df
+double find_chisq_df(double delta, double q, double p);
+RcppExport SEXP _boodist_find_chisq_df(SEXP deltaSEXP, SEXP qSEXP, SEXP pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    Rcpp::traits::input_parameter< double >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_chisq_df(delta, q, p));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_dhexp
 Rcpp::NumericVector rcpp_dhexp(Rcpp::NumericVector x, Rcpp::NumericVector probs, Rcpp::NumericVector rates);
 RcppExport SEXP _boodist_rcpp_dhexp(SEXP xSEXP, SEXP probsSEXP, SEXP ratesSEXP) {
@@ -618,6 +644,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_t_skewness", (DL_FUNC) &_boodist_t_skewness, 2},
     {"_boodist_t_kurtosis", (DL_FUNC) &_boodist_t_kurtosis, 2},
     {"_boodist_t_kurtosis_excess", (DL_FUNC) &_boodist_t_kurtosis_excess, 2},
+    {"_boodist_find_chisq_ncp", (DL_FUNC) &_boodist_find_chisq_ncp, 3},
+    {"_boodist_find_chisq_df", (DL_FUNC) &_boodist_find_chisq_df, 3},
     {"_boodist_rcpp_dhexp", (DL_FUNC) &_boodist_rcpp_dhexp, 3},
     {"_boodist_rcpp_phexp", (DL_FUNC) &_boodist_rcpp_phexp, 4},
     {"_boodist_rcpp_qhexp", (DL_FUNC) &_boodist_rcpp_qhexp, 4},

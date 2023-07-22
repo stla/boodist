@@ -73,6 +73,14 @@ t_kurtosis_excess <- function(nu, delta) {
     .Call(`_boodist_t_kurtosis_excess`, nu, delta)
 }
 
+find_chisq_ncp <- function(nu, q, p) {
+    .Call(`_boodist_find_chisq_ncp`, nu, q, p)
+}
+
+find_chisq_df <- function(delta, q, p) {
+    .Call(`_boodist_find_chisq_df`, delta, q, p)
+}
+
 rcpp_dhexp <- function(x, probs, rates) {
     .Call(`_boodist_rcpp_dhexp`, x, probs, rates)
 }

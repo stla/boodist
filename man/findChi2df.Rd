@@ -24,6 +24,7 @@ Find the degrees of freedom parameter of a non-central
   probability, and the non-centrality parameter.
 }
 \examples{
+library(boodist)
 nu <- findChi2df(ncp = 10, q = 3, p = 0.1)
 pchisq(3, df = nu, ncp = 10) # should be 0.1
 }
