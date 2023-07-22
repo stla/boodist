@@ -476,6 +476,128 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_dskewNormal
+Rcpp::NumericVector rcpp_dskewNormal(Rcpp::NumericVector x, double xi, double omega, double alpha);
+RcppExport SEXP _boodist_rcpp_dskewNormal(SEXP xSEXP, SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_dskewNormal(x, xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pskewNormal
+Rcpp::NumericVector rcpp_pskewNormal(Rcpp::NumericVector q, double xi, double omega, double alpha, bool lower);
+RcppExport SEXP _boodist_rcpp_pskewNormal(SEXP qSEXP, SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_pskewNormal(q, xi, omega, alpha, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_qskewNormal
+Rcpp::NumericVector rcpp_qskewNormal(Rcpp::NumericVector p, double xi, double omega, double alpha, bool lower);
+RcppExport SEXP _boodist_rcpp_qskewNormal(SEXP pSEXP, SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_qskewNormal(p, xi, omega, alpha, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_mean
+double skewNormal_mean(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_mean(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_mean(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_mode
+double skewNormal_mode(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_mode(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_mode(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_variance
+double skewNormal_variance(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_variance(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_variance(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_skewness
+double skewNormal_skewness(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_skewness(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_skewness(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_kurtosis
+double skewNormal_kurtosis(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_kurtosis(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_kurtosis(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// skewNormal_kurtosis_excess
+double skewNormal_kurtosis_excess(double xi, double omega, double alpha);
+RcppExport SEXP _boodist_skewNormal_kurtosis_excess(SEXP xiSEXP, SEXP omegaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(skewNormal_kurtosis_excess(xi, omega, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_boodist_rcpp_dgumbel", (DL_FUNC) &_boodist_rcpp_dgumbel, 4},
@@ -515,6 +637,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_ig_skewness", (DL_FUNC) &_boodist_ig_skewness, 2},
     {"_boodist_ig_kurtosis", (DL_FUNC) &_boodist_ig_kurtosis, 2},
     {"_boodist_ig_kurtosis_excess", (DL_FUNC) &_boodist_ig_kurtosis_excess, 2},
+    {"_boodist_rcpp_dskewNormal", (DL_FUNC) &_boodist_rcpp_dskewNormal, 4},
+    {"_boodist_rcpp_pskewNormal", (DL_FUNC) &_boodist_rcpp_pskewNormal, 5},
+    {"_boodist_rcpp_qskewNormal", (DL_FUNC) &_boodist_rcpp_qskewNormal, 5},
+    {"_boodist_skewNormal_mean", (DL_FUNC) &_boodist_skewNormal_mean, 3},
+    {"_boodist_skewNormal_mode", (DL_FUNC) &_boodist_skewNormal_mode, 3},
+    {"_boodist_skewNormal_variance", (DL_FUNC) &_boodist_skewNormal_variance, 3},
+    {"_boodist_skewNormal_skewness", (DL_FUNC) &_boodist_skewNormal_skewness, 3},
+    {"_boodist_skewNormal_kurtosis", (DL_FUNC) &_boodist_skewNormal_kurtosis, 3},
+    {"_boodist_skewNormal_kurtosis_excess", (DL_FUNC) &_boodist_skewNormal_kurtosis_excess, 3},
     {NULL, NULL, 0}
 };
 

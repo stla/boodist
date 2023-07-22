@@ -8,6 +8,7 @@
 #include <boost/math/distributions/extreme_value.hpp>
 #include <boost/math/distributions/hyperexponential.hpp>
 #include <boost/math/distributions/inverse_gaussian.hpp>
+#include <boost/math/distributions/skew_normal.hpp>
 
 using namespace boost::math;
 

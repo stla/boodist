@@ -149,3 +149,39 @@ ig_kurtosis_excess <- function(mu, lambda) {
     .Call(`_boodist_ig_kurtosis_excess`, mu, lambda)
 }
 
+rcpp_dskewNormal <- function(x, xi, omega, alpha) {
+    .Call(`_boodist_rcpp_dskewNormal`, x, xi, omega, alpha)
+}
+
+rcpp_pskewNormal <- function(q, xi, omega, alpha, lower) {
+    .Call(`_boodist_rcpp_pskewNormal`, q, xi, omega, alpha, lower)
+}
+
+rcpp_qskewNormal <- function(p, xi, omega, alpha, lower) {
+    .Call(`_boodist_rcpp_qskewNormal`, p, xi, omega, alpha, lower)
+}
+
+skewNormal_mean <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_mean`, xi, omega, alpha)
+}
+
+skewNormal_mode <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_mode`, xi, omega, alpha)
+}
+
+skewNormal_variance <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_variance`, xi, omega, alpha)
+}
+
+skewNormal_skewness <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_skewness`, xi, omega, alpha)
+}
+
+skewNormal_kurtosis <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_kurtosis`, xi, omega, alpha)
+}
+
+skewNormal_kurtosis_excess <- function(xi, omega, alpha) {
+    .Call(`_boodist_skewNormal_kurtosis_excess`, xi, omega, alpha)
+}
+
