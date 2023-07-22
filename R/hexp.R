@@ -8,8 +8,11 @@ rhexp <- function(n, probs, rates) {
   x[cbind(seq_len(n), i)]
 }
 
-#' @title hyperexponential distribution
+#' @title Hyperexponential distribution
 #' @description A R6 class to represent a hyperexponential distribution.
+#' @details
+#' See \href{https://en.wikipedia.org/wiki/Hyperexponential_distribution}{Wikipedia}.
+#'
 #' @export
 #' @importFrom R6 R6Class
 Hyperexponential <- R6Class(
@@ -56,7 +59,7 @@ Hyperexponential <- R6Class(
     },
 
     #' @description Density function of the hyperexponential distribution.
-    #' @param x numeric vector
+    #' @param x vector of positive numbers
     #' @return The density evaluated at \code{x}.
     "d" = function(x) {
       probs <- private[[".probs"]]
@@ -64,7 +67,7 @@ Hyperexponential <- R6Class(
       rcpp_dhexp(x, probs, rates)
     },
 
-    #' @description Cumulative distribution function of the Hyperexponential
+    #' @description Cumulative distribution function of the hyperexponential
     #'   distribution.
     #' @param q numeric vector of quantiles
     #' @param lower Boolean, whether to deal with the lower tail

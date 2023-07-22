@@ -12,6 +12,8 @@ rig <- function(n, mu, lambda) {
 
 #' @title Inverse Gaussian distribution
 #' @description A R6 class to represent an inverse Gaussian distribution.
+#' @details
+#' See \href{https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution}{Wikipedia}.
 #' @export
 #' @importFrom R6 R6Class
 InverseGaussian <- R6Class(

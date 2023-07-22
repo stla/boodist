@@ -8,6 +8,8 @@ rgumbel <- function(n, a, b) {
 
 #' @title Gumbel distribution
 #' @description A R6 class to represent a Gumbel distribution.
+#' @details
+#' See \href{https://en.wikipedia.org/wiki/Gumbel_distribution}{Wikipedia}.
 #' @export
 #' @importFrom R6 R6Class
 Gumbel <- R6Class(

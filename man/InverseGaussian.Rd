@@ -6,6 +6,9 @@
 \description{
 A R6 class to represent an inverse Gaussian distribution.
 }
+\details{
+See \href{https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution}{Wikipedia}.
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{

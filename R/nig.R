@@ -10,6 +10,8 @@ rnig <- function(n, mu, alpha, beta, delta) {
 
 #' @title Normal-inverse Gaussian distribution
 #' @description A R6 class to represent a normal-inverse Gaussian distribution.
+#' @details
+#' See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
 #' @export
 #' @importFrom R6 R6Class
 NormalInverseGaussian <- R6Class(

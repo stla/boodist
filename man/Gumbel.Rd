@@ -6,6 +6,9 @@
 \description{
 A R6 class to represent a Gumbel distribution.
 }
+\details{
+See \href{https://en.wikipedia.org/wiki/Gumbel_distribution}{Wikipedia}.
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{

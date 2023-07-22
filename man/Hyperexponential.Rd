@@ -2,9 +2,12 @@
 % Please edit documentation in R/hexp.R
 \name{Hyperexponential}
 \alias{Hyperexponential}
-\title{hyperexponential distribution}
+\title{Hyperexponential distribution}
 \description{
 A R6 class to represent a hyperexponential distribution.
+}
+\details{
+See \href{https://en.wikipedia.org/wiki/Hyperexponential_distribution}{Wikipedia}.
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -68,7 +71,7 @@ Density function of the hyperexponential distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{numeric vector}
+\item{\code{x}}{vector of positive numbers}
 }
 \if{html}{\out{</div>}}
 }
@@ -80,7 +83,7 @@ The density evaluated at \code{x}.
 \if{html}{\out{<a id="method-Hyperexponential-p"></a>}}
 \if{latex}{\out{\hypertarget{method-Hyperexponential-p}{}}}
 \subsection{Method \code{p()}}{
-Cumulative distribution function of the Hyperexponential
+Cumulative distribution function of the hyperexponential
   distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Hyperexponential$p(q, lower = TRUE)}\if{html}{\out{</div>}}
