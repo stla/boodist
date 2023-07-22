@@ -3,8 +3,9 @@
 rnig <- function(n, mu, alpha, beta, delta) {
   stopifnot(alpha > 0, alpha > beta)
   stopifnot(delta > 0)
-  z <- rig(n, delta, sqrt(alpha*alpha - beta*beta))
-  rnorm(n, mu + beta*z, sqrt(z))
+  z <- rig(n, 1/sqrt(alpha*alpha - beta*beta), delta)
+  v <- delta * z
+  rnorm(n, mu + beta * v, sqrt(v))
 }
 
 #' @title Normal-inverse Gaussian distribution
@@ -90,7 +91,7 @@ NormalInverseGaussian <- R6Class(
       delta <- private[[".delta"]]
       gamma <- private[[".gamma"]]
       s <- sqrt(delta^2 + (x-mu)^2)
-      alpha*delta*besselK(1, alpha*s) * exp(delta*gamma+beta*(x-mu)) / (pi*s)
+      alpha*delta*besselK(alpha*s, 1) * exp(delta*gamma+beta*(x-mu)) / (pi*s)
     },
 
     #' @description Sampling from the normal-inverse Gaussian distribution.
