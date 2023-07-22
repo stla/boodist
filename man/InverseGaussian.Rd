@@ -46,9 +46,9 @@ New inverse Gaussian distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{mu}}{location parameter}
+\item{\code{mu}}{parameter, the mean, \code{>0}}
 
-\item{\code{lambda}}{scale parameter, \code{>0}}
+\item{\code{lambda}}{shape parameter, \code{>0}}
 }
 \if{html}{\out{</div>}}
 }
@@ -68,7 +68,7 @@ Density function of the inverse Gaussian distribution.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{numeric vector}
+\item{\code{x}}{vector of positive numbers}
 
 \item{\code{log}}{Boolean, whether to return the logarithm of the density}
 }

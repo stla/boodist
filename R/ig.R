@@ -46,8 +46,8 @@ InverseGaussian <- R6Class(
   public = list(
 
     #' @description New inverse Gaussian distribution.
-    #' @param mu location parameter
-    #' @param lambda scale parameter, \code{>0}
+    #' @param mu parameter, the mean, \code{>0}
+    #' @param lambda shape parameter, \code{>0}
     #' @return An \code{inverseGaussian} object.
     "initialize" = function(mu, lambda) {
       stopifnot(lambda > 0)
@@ -56,7 +56,7 @@ InverseGaussian <- R6Class(
     },
 
     #' @description Density function of the inverse Gaussian distribution.
-    #' @param x numeric vector
+    #' @param x vector of positive numbers
     #' @param log Boolean, whether to return the logarithm of the density
     #' @return The density or the log-density evaluated at \code{x}.
     "d" = function(x, log = FALSE) {

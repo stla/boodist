@@ -120,6 +120,9 @@ The mean of the normal-inverse Gaussian distribution.
 \subsection{Method \code{sd()}}{
 Standard deviation of the normal-inverse Gaussian
  distribution.
+
+
+Variance of the normal-inverse Gaussian distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$sd()}\if{html}{\out{</div>}}
 }
@@ -133,7 +136,6 @@ The standard deviation of the normal-inverse Gaussian
 \if{html}{\out{<a id="method-NormalInverseGaussian-variance"></a>}}
 \if{latex}{\out{\hypertarget{method-NormalInverseGaussian-variance}{}}}
 \subsection{Method \code{variance()}}{
-Variance of the normal-inverse Gaussian distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$variance()}\if{html}{\out{</div>}}
 }
@@ -160,6 +162,9 @@ The skewness of the normal-inverse Gaussian distribution.
 \if{latex}{\out{\hypertarget{method-NormalInverseGaussian-kurtosis}{}}}
 \subsection{Method \code{kurtosis()}}{
 Kurtosis of the normal-inverse Gaussian distribution.
+
+
+Kurtosis excess of the normal-inverse Gaussian distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$kurtosis()}\if{html}{\out{</div>}}
 }
@@ -172,7 +177,6 @@ The kurtosis of the normal-inverse Gaussian distribution.
 \if{html}{\out{<a id="method-NormalInverseGaussian-kurtosisExcess"></a>}}
 \if{latex}{\out{\hypertarget{method-NormalInverseGaussian-kurtosisExcess}{}}}
 \subsection{Method \code{kurtosisExcess()}}{
-Kurtosis excess of the normal-inverse Gaussian distribution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$kurtosisExcess()}\if{html}{\out{</div>}}
 }
