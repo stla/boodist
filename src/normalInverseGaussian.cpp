@@ -27,10 +27,7 @@ class NIGpdf : public Func {
       : mu(mu_), alpha(alpha_), beta(beta_), delta(delta_) {}
 
   double operator()(const double& x) const {
-    double gamm = std::sqrt(alpha * alpha - beta * beta);
-    double s = std::sqrt(delta * delta + (x - mu) * (x - mu));
-    return alpha * delta * cyl_bessel_k(1, alpha * s) *
-           exp(delta * gamm + beta * (x - mu)) / (M_PI * s);
+    return dnig(x, mu, alpha, beta, delta);
   }
 };
 
@@ -69,42 +66,37 @@ Rcpp::NumericVector pnig_rcpp(Rcpp::NumericVector q,
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericVector qnig_rcpp(double p,
-                              const double mu,
-                              const double alpha,
-                              const double beta,
-                              const double delta) {
+double qnig_rcpp(
+  double p,
+  const double mu, const double alpha, const double beta, const double delta
+) {
 
   auto pdf = [mu, alpha, beta, delta](double x) {
     return dnig(x, mu, alpha, beta, delta);
   };
 
   const double lower = -std::numeric_limits<double>::infinity();
+  const double a = -M_PI/2 + 0.01;
+  const double b = M_PI/2 - 0.01;
 
   auto integral = [pdf, lower, p](double atanq) {
     double error;
     return gauss_kronrod<double, 61>::integrate(
-                  pdf, lower, std::tan(atanq), 15, 0, &error
+                  pdf, lower, std::tan(atanq), 15, 1.0e-6, &error
                 ) - p;
   };
-
-  const double a = -M_PI/2 + 0.01;
-  const double b = M_PI/2 - 0.01;
-
-  Rcpp::Rcout << "p(a): " << integral(a) << "\n";
-  Rcpp::Rcout << "p(b): " << integral(b) << "\n";
 
   std::uintmax_t max_iter = 300;
   std::pair<double, double> interval = toms748_solve(
     integral,
     a, b,
-    [](double l, double r){return abs(l-r) < 1e-6;},
+    [](double l, double r){return fabs(l-r) < 1e-6;},
     max_iter
   );
-  // if(err_code != 0) {
-  //   Rcpp::warning("An anomaly occured (see the error codes).");
-  // }
-  return Rcpp::NumericVector::create(
-    std::tan(interval.first), std::tan(interval.second)
+  if(max_iter == 300) {
+    Rcpp::warning("Reached maximum of iterations.");
+  }
+  return
+    (std::tan(interval.first) + std::tan(interval.second)) / 2;
   );
 }
