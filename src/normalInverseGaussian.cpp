@@ -66,8 +66,8 @@ Rcpp::NumericVector pnig_rcpp(Rcpp::NumericVector q,
 }
 
 // [[Rcpp::export]]
-double qnig_rcpp(
-  double p,
+Rcpp::NumericVector qnig_rcpp(
+  Rcpp::NumericVector p, const double tan_a, const double tan_b,
   const double mu, const double alpha, const double beta, const double delta
 ) {
 
@@ -76,27 +76,31 @@ double qnig_rcpp(
   };
 
   const double lower = -std::numeric_limits<double>::infinity();
-  const double a = -M_PI/2 + 0.01;
-  const double b = M_PI/2 - 0.01;
+  const double a = std::atan(tan_a);
+  const double b = std::atan(tan_b);
 
-  auto integral = [pdf, lower, p](double atanq) {
-    double error;
-    return gauss_kronrod<double, 61>::integrate(
-                  pdf, lower, std::tan(atanq), 15, 1.0e-6, &error
-                ) - p;
-  };
+  int n = p.size();
+  Rcpp::NumericVector out(n);
 
-  std::uintmax_t max_iter = 300;
-  std::pair<double, double> interval = toms748_solve(
-    integral,
-    a, b,
-    [](double l, double r){return fabs(l-r) < 1e-6;},
-    max_iter
-  );
-  if(max_iter == 300) {
-    Rcpp::warning("Reached maximum of iterations.");
+  for(int i = 0; i < n; i++) {
+    double prob = p(i);
+    auto integral = [pdf, lower, prob](double atanq) {
+      double error;
+      return gauss_kronrod<double, 61>::integrate(
+          pdf, lower, std::tan(atanq), 15, 1e-6, &error
+      ) - prob;
+    };
+    std::uintmax_t max_iter = 300;
+    std::pair<double, double> interval = toms748_solve(
+      integral, a, b,
+      [](double l, double r){return fabs(l-r) < 1e-6;},
+      max_iter
+    );
+    if(max_iter == 300) {
+      Rcpp::warning("Reached maximum number of iterations.");
+    }
+    out(i) = (std::tan(interval.first) + std::tan(interval.second)) / 2;
   }
-  return
-    (std::tan(interval.first) + std::tan(interval.second)) / 2;
-  );
+
+  return out;
 }

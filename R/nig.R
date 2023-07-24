@@ -117,6 +117,26 @@ NormalInverseGaussian <- R6Class(
       pnig_rcpp(q, mu, alpha, beta, delta)
     },
 
+    #' @description Quantile function of the normal-inverse
+    #'   Gaussian distribution.
+    #' @param p numeric vector of probabilities
+    #' @param a,b bounds enclosing the quantiles to be found
+    #' @return The cumulative probabilities corresponding to \code{q}, with two
+    #'   attributes (see the \strong{Note}).
+    "q" = function(p, a = -30, b = 30) {
+      if(any(self$p(a) - p >= 0)) {
+        stop("The lower bound `a` is too large.")
+      }
+      if(any(self$p(b) - p <= 0)) {
+        stop("The upper bound `b` is too small.")
+      }
+      mu    <- private[[".mu"]]
+      alpha <- private[[".alpha"]]
+      beta  <- private[[".beta"]]
+      delta <- private[[".delta"]]
+      qnig_rcpp(p, a, b, mu, alpha, beta, delta)
+    },
+
     #' @description Sampling from the normal-inverse Gaussian distribution.
     #' @param n number of simulations
     #' @return A numeric vector of length \code{n}.

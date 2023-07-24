@@ -519,17 +519,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // qnig_rcpp
-Rcpp::NumericVector qnig_rcpp(double p, const double mu, const double alpha, const double beta, const double delta);
-RcppExport SEXP _boodist_qnig_rcpp(SEXP pSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP deltaSEXP) {
+Rcpp::NumericVector qnig_rcpp(Rcpp::NumericVector p, const double tan_a, const double tan_b, const double mu, const double alpha, const double beta, const double delta);
+RcppExport SEXP _boodist_qnig_rcpp(SEXP pSEXP, SEXP tan_aSEXP, SEXP tan_bSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP deltaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< const double >::type tan_a(tan_aSEXP);
+    Rcpp::traits::input_parameter< const double >::type tan_b(tan_bSEXP);
     Rcpp::traits::input_parameter< const double >::type mu(muSEXP);
     Rcpp::traits::input_parameter< const double >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< const double >::type beta(betaSEXP);
     Rcpp::traits::input_parameter< const double >::type delta(deltaSEXP);
-    rcpp_result_gen = Rcpp::wrap(qnig_rcpp(p, mu, alpha, beta, delta));
+    rcpp_result_gen = Rcpp::wrap(qnig_rcpp(p, tan_a, tan_b, mu, alpha, beta, delta));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -697,7 +699,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_ig_kurtosis", (DL_FUNC) &_boodist_ig_kurtosis, 2},
     {"_boodist_ig_kurtosis_excess", (DL_FUNC) &_boodist_ig_kurtosis_excess, 2},
     {"_boodist_pnig_rcpp", (DL_FUNC) &_boodist_pnig_rcpp, 5},
-    {"_boodist_qnig_rcpp", (DL_FUNC) &_boodist_qnig_rcpp, 5},
+    {"_boodist_qnig_rcpp", (DL_FUNC) &_boodist_qnig_rcpp, 7},
     {"_boodist_rcpp_dskewNormal", (DL_FUNC) &_boodist_rcpp_dskewNormal, 4},
     {"_boodist_rcpp_pskewNormal", (DL_FUNC) &_boodist_rcpp_pskewNormal, 5},
     {"_boodist_rcpp_qskewNormal", (DL_FUNC) &_boodist_rcpp_qskewNormal, 5},
