@@ -10,10 +10,16 @@ rnig <- function(n, mu, alpha, beta, delta) {
 
 #' @title Normal-inverse Gaussian distribution
 #' @description A R6 class to represent a normal-inverse Gaussian distribution.
-#'    The quantile function is not available. If you need them, you can use the
+#'    The quantile function is not available. If you need it, you can try the
 #'    \strong{GeneralizedHyperbolic} package.
 #' @details
 #' See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
+#' @note
+#' The cumulative distribution function is evaluated by integrating the
+#'   density function (in C++). Its returned value has two attributes: a
+#'   numeric vector \code{"error_estimate"} and an integer vector
+#'   \code{"error_code"}. The error code is 0 if no problem is detected. If an
+#'   error code is not 0, a warning is thrown.
 #' @export
 #' @importFrom R6 R6Class
 NormalInverseGaussian <- R6Class(
@@ -101,13 +107,14 @@ NormalInverseGaussian <- R6Class(
     #' @description Cumulative distribution function of the normal-inverse
     #'   Gaussian distribution.
     #' @param q numeric vector of quantiles
-    #' @return The cumulative probabilities corresponding to \code{q}.
+    #' @return The cumulative probabilities corresponding to \code{q}, with two
+    #'   attributes (see the \strong{Note}).
     "p" = function(q) {
       mu    <- private[[".mu"]]
       alpha <- private[[".alpha"]]
       beta  <- private[[".beta"]]
       delta <- private[[".delta"]]
-      pnig_rcpp(q, 0, 2, 1, 2)
+      pnig_rcpp(q, mu, alpha, beta, delta)
     },
 
     #' @description Sampling from the normal-inverse Gaussian distribution.

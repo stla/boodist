@@ -4,13 +4,19 @@
 \alias{NormalInverseGaussian}
 \title{Normal-inverse Gaussian distribution}
 \description{
-A R6 class to represent a normal-inverse Gaussian distribution. 
-   The cumulative distribution function and the quantile function are not 
-   available. If you need them, use the \strong{GeneralizedHyperbolic} 
-   package.
+A R6 class to represent a normal-inverse Gaussian distribution.
+   The quantile function is not available. If you need it, you can try the
+   \strong{GeneralizedHyperbolic} package.
 }
 \details{
 See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
+}
+\note{
+The cumulative distribution function is evaluated by integrating the
+  density function (in C++). Its returned value has two attributes: a
+  numeric vector \code{"error_estimate"} and an integer vector
+  \code{"error_code"}. The error code is 0 if no problem is detected. If an
+  error code is not 0, a warning is thrown.
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -30,6 +36,7 @@ See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wi
 \itemize{
 \item \href{#method-NormalInverseGaussian-new}{\code{NormalInverseGaussian$new()}}
 \item \href{#method-NormalInverseGaussian-d}{\code{NormalInverseGaussian$d()}}
+\item \href{#method-NormalInverseGaussian-p}{\code{NormalInverseGaussian$p()}}
 \item \href{#method-NormalInverseGaussian-r}{\code{NormalInverseGaussian$r()}}
 \item \href{#method-NormalInverseGaussian-mean}{\code{NormalInverseGaussian$mean()}}
 \item \href{#method-NormalInverseGaussian-sd}{\code{NormalInverseGaussian$sd()}}
@@ -85,6 +92,28 @@ Density function of the normal-inverse
 }
 \subsection{Returns}{
 The density or the log-density evaluated at \code{x}.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NormalInverseGaussian-p"></a>}}
+\if{latex}{\out{\hypertarget{method-NormalInverseGaussian-p}{}}}
+\subsection{Method \code{p()}}{
+Cumulative distribution function of the normal-inverse
+  Gaussian distribution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$p(q)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{q}}{numeric vector of quantiles}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+The cumulative probabilities corresponding to \code{q}, with two
+  attributes (see the \strong{Note}).
 }
 }
 \if{html}{\out{<hr>}}
