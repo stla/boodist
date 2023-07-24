@@ -504,7 +504,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // pnig_rcpp
-Rcpp::List pnig_rcpp(const double q, const double mu, const double alpha, const double beta, const double delta);
+Rcpp::NumericVector pnig_rcpp(const double q, const double mu, const double alpha, const double beta, const double delta);
 RcppExport SEXP _boodist_pnig_rcpp(SEXP qSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP deltaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
