@@ -504,12 +504,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // pnig_rcpp
-Rcpp::NumericVector pnig_rcpp(const double q, const double mu, const double alpha, const double beta, const double delta);
+Rcpp::NumericVector pnig_rcpp(Rcpp::NumericVector q, const double mu, const double alpha, const double beta, const double delta);
 RcppExport SEXP _boodist_pnig_rcpp(SEXP qSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP deltaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const double >::type q(qSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
     Rcpp::traits::input_parameter< const double >::type mu(muSEXP);
     Rcpp::traits::input_parameter< const double >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< const double >::type beta(betaSEXP);
