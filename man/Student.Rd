@@ -2,9 +2,14 @@
 % Please edit documentation in R/student.R
 \name{Student}
 \alias{Student}
-\title{Student distribution}
+\title{Non-central Student distribution}
 \description{
-A R6 class to represent a Student distribution.
+A R6 class to represent a non-central Student distribution.
+}
+\note{
+The non-centrality parameter of the Student distribution in the 
+  \strong{stats} package is limited to \code{abs(ncp) <= 37.62}. 
+  The present implementation allows a larger range.
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}

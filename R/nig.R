@@ -9,7 +9,10 @@ rnig <- function(n, mu, alpha, beta, delta) {
 }
 
 #' @title Normal-inverse Gaussian distribution
-#' @description A R6 class to represent a normal-inverse Gaussian distribution.
+#' @description A R6 class to represent a normal-inverse Gaussian distribution. 
+#'    The cumulative distribution function and the quantile function are not 
+#'    available. If you need them, use the \strong{GeneralizedHyperbolic} 
+#'    package.
 #' @details
 #' See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
 #' @export
