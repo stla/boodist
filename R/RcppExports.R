@@ -161,6 +161,10 @@ pnig_rcpp <- function(q, mu, alpha, beta, delta) {
     .Call(`_boodist_pnig_rcpp`, q, mu, alpha, beta, delta)
 }
 
+qnig_rcpp <- function(p, mu, alpha, beta, delta) {
+    .Call(`_boodist_qnig_rcpp`, p, mu, alpha, beta, delta)
+}
+
 rcpp_dskewNormal <- function(x, xi, omega, alpha) {
     .Call(`_boodist_rcpp_dskewNormal`, x, xi, omega, alpha)
 }

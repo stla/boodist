@@ -76,7 +76,7 @@ Rcpp::NumericVector qnig_rcpp(double p,
                               const double delta) {
 
   auto pdf = [mu, alpha, beta, delta](double x) {
-    return dnig(x, mu, alpha, beta, delta)
+    return dnig(x, mu, alpha, beta, delta);
   };
 
   const double lower = -std::numeric_limits<double>::infinity();
@@ -84,12 +84,16 @@ Rcpp::NumericVector qnig_rcpp(double p,
   auto integral = [pdf, lower, p](double atanq) {
     double error;
     return gauss_kronrod<double, 61>::integrate(
-                  pdf, lower, std::tan(atanq), 0, 0, &error
+                  pdf, lower, std::tan(atanq), 15, 0, &error
                 ) - p;
   };
 
-  const double a = -M_PI + 0.01;
-  const double b = M_PI - 0.01;
+  const double a = -M_PI/2 + 0.01;
+  const double b = M_PI/2 - 0.01;
+
+  Rcpp::Rcout << "p(a): " << integral(a) << "\n";
+  Rcpp::Rcout << "p(b): " << integral(b) << "\n";
+
   std::uintmax_t max_iter = 300;
   std::pair<double, double> interval = toms748_solve(
     integral,

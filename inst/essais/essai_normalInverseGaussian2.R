@@ -12,7 +12,6 @@ lines(q_, y, col = "red", lwd = 3, lty = "dashed")
 
 
 p <- 0.6
-atan_p <- atan(p)
 
 f <- function(aq) {
   nig$p(tan(aq)) - 0.6
@@ -25,4 +24,5 @@ q <- tan(root)
 
 nig$p(q)
 
+boodist:::qnig_rcpp(0.6, 0, 2, 1, 2)
 
