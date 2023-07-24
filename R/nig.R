@@ -51,6 +51,7 @@ NormalInverseGaussian <- R6Class(
       if(missing(value)) {
         return(private[[".alpha"]])
       } else {
+        stopifnot(value > 0)
         private[[".alpha"]] <- value
       }
     },
@@ -69,6 +70,7 @@ NormalInverseGaussian <- R6Class(
       if(missing(value)) {
         return(private[[".delta"]])
       } else {
+        stopifnot(value > 0)
         private[[".delta"]] <- value
       }
     }

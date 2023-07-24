@@ -19,7 +19,7 @@ Hyperexponential <- R6Class(
   "Hyperexponential",
 
   private = list(
-    ".probs"    = NA_real_,
+    ".probs" = NA_real_,
     ".rates" = NA_real_
   ),
 
@@ -30,6 +30,7 @@ Hyperexponential <- R6Class(
       if(missing(value)) {
         return(private[[".probs"]])
       } else {
+        stopifnot(all(values > 0))
         private[[".probs"]] <- value
       }
     },
@@ -39,6 +40,7 @@ Hyperexponential <- R6Class(
       if(missing(value)) {
         return(private[[".rates"]])
       } else {
+        stopifnot(all(values > 0))
         private[[".rates"]] <- value
       }
     }
@@ -54,6 +56,7 @@ Hyperexponential <- R6Class(
     "initialize" = function(probs, rates) {
       stopifnot(all(probs > 0))
       stopifnot(all(rates > 0))
+      stopifnot(length(probs) == length(rates))
       private[[".probs"]] <- probs
       private[[".rates"]] <- rates
     },

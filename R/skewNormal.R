@@ -37,6 +37,7 @@ SkewNormal <- R6Class(
       if(missing(value)) {
         return(private[[".omega"]])
       } else {
+        stopifnot(value > 0)
         private[[".omega"]] <- value
       }
     },

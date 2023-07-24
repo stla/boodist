@@ -31,6 +31,7 @@ InverseGaussian <- R6Class(
       if(missing(value)) {
         return(private[[".mu"]])
       } else {
+        stopifnot(value > 0)
         private[[".mu"]] <- value
       }
     },
@@ -40,6 +41,7 @@ InverseGaussian <- R6Class(
       if(missing(value)) {
         return(private[[".lambda"]])
       } else {
+        stopifnot(value > 0)
         private[[".lambda"]] <- value
       }
     }

@@ -7,8 +7,8 @@
 A R6 class to represent a non-central Student distribution.
 }
 \note{
-The non-centrality parameter of the Student distribution in the 
-  \strong{stats} package is limited to \code{abs(ncp) <= 37.62}. 
+The non-centrality parameter of the Student distribution in the
+  \strong{stats} package is limited to \code{abs(ncp) <= 37.62}.
   The present implementation allows a larger range.
 }
 \section{Active bindings}{

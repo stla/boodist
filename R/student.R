@@ -3,9 +3,9 @@
 #' @export
 #' @importFrom R6 R6Class
 #' @importFrom stats rt
-#' @note 
-#' The non-centrality parameter of the Student distribution in the 
-#'   \strong{stats} package is limited to \code{abs(ncp) <= 37.62}. 
+#' @note
+#' The non-centrality parameter of the Student distribution in the
+#'   \strong{stats} package is limited to \code{abs(ncp) <= 37.62}.
 #'   The present implementation allows a larger range.
 Student <- R6Class(
   "Student",
@@ -22,6 +22,7 @@ Student <- R6Class(
       if(missing(value)) {
         return(private[[".nu"]])
       } else {
+        stopifnot(value > 0)
         private[[".nu"]] <- value
       }
     },

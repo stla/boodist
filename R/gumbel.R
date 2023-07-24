@@ -36,6 +36,7 @@ Gumbel <- R6Class(
       if(missing(value)) {
         return(private[[".b"]])
       } else {
+        stopifnot(value > 0)
         private[[".b"]] <- value
       }
     }
