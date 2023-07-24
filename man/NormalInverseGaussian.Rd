@@ -5,8 +5,6 @@
 \title{Normal-inverse Gaussian distribution}
 \description{
 A R6 class to represent a normal-inverse Gaussian distribution.
-   The quantile function is not available. If you need it, you can try the
-   \strong{GeneralizedHyperbolic} package.
 }
 \details{
 See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
@@ -16,7 +14,11 @@ The cumulative distribution function is evaluated by integrating the
   density function (in C++). Its returned value has two attributes: a
   numeric vector \code{"error_estimate"} and an integer vector
   \code{"error_code"}. The error code is 0 if no problem is detected. If an
-  error code is not 0, a warning is thrown.
+  error code is not 0, a warning is thrown. The quantile function is
+  evaluated by root-finding and then the user must provide some bounds
+  enclosing the values of the quantiles. A maximum number of iterations is
+  fixed in the root-finding algorithm. If it is reached, a warning is
+  thrown.
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -37,6 +39,7 @@ The cumulative distribution function is evaluated by integrating the
 \item \href{#method-NormalInverseGaussian-new}{\code{NormalInverseGaussian$new()}}
 \item \href{#method-NormalInverseGaussian-d}{\code{NormalInverseGaussian$d()}}
 \item \href{#method-NormalInverseGaussian-p}{\code{NormalInverseGaussian$p()}}
+\item \href{#method-NormalInverseGaussian-q}{\code{NormalInverseGaussian$q()}}
 \item \href{#method-NormalInverseGaussian-r}{\code{NormalInverseGaussian$r()}}
 \item \href{#method-NormalInverseGaussian-mean}{\code{NormalInverseGaussian$mean()}}
 \item \href{#method-NormalInverseGaussian-sd}{\code{NormalInverseGaussian$sd()}}
@@ -114,6 +117,30 @@ Cumulative distribution function of the normal-inverse
 \subsection{Returns}{
 The cumulative probabilities corresponding to \code{q}, with two
   attributes (see the \strong{Note}).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-NormalInverseGaussian-q"></a>}}
+\if{latex}{\out{\hypertarget{method-NormalInverseGaussian-q}{}}}
+\subsection{Method \code{q()}}{
+Quantile function of the normal-inverse
+  Gaussian distribution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$q(p, a = -30, b = 30)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{p}}{numeric vector of probabilities}
+
+\item{\code{a, b}}{bounds enclosing the quantiles to be found (see the
+\strong{Note})}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+The quantiles corresponding to \code{p}.
 }
 }
 \if{html}{\out{<hr>}}

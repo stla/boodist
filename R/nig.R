@@ -10,8 +10,6 @@ rnig <- function(n, mu, alpha, beta, delta) {
 
 #' @title Normal-inverse Gaussian distribution
 #' @description A R6 class to represent a normal-inverse Gaussian distribution.
-#'    The quantile function is not available. If you need it, you can try the
-#'    \strong{GeneralizedHyperbolic} package.
 #' @details
 #' See \href{https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution}{Wikipedia}.
 #' @note
@@ -19,7 +17,11 @@ rnig <- function(n, mu, alpha, beta, delta) {
 #'   density function (in C++). Its returned value has two attributes: a
 #'   numeric vector \code{"error_estimate"} and an integer vector
 #'   \code{"error_code"}. The error code is 0 if no problem is detected. If an
-#'   error code is not 0, a warning is thrown.
+#'   error code is not 0, a warning is thrown. The quantile function is
+#'   evaluated by root-finding and then the user must provide some bounds
+#'   enclosing the values of the quantiles. A maximum number of iterations is
+#'   fixed in the root-finding algorithm. If it is reached, a warning is
+#'   thrown.
 #' @export
 #' @importFrom R6 R6Class
 NormalInverseGaussian <- R6Class(
@@ -120,9 +122,9 @@ NormalInverseGaussian <- R6Class(
     #' @description Quantile function of the normal-inverse
     #'   Gaussian distribution.
     #' @param p numeric vector of probabilities
-    #' @param a,b bounds enclosing the quantiles to be found
-    #' @return The cumulative probabilities corresponding to \code{q}, with two
-    #'   attributes (see the \strong{Note}).
+    #' @param a,b bounds enclosing the quantiles to be found (see the
+    #'   \strong{Note})
+    #' @return The quantiles corresponding to \code{p}.
     "q" = function(p, a = -30, b = 30) {
       if(any(self$p(a) - p >= 0)) {
         stop("The lower bound `a` is too large.")

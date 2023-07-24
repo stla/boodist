@@ -3,7 +3,7 @@ library(boodist)
 
 nig <- NormalInverseGaussian$new(0, 2, 1, 2)
 
-( quants <- nig$q(c(0.2, 0.6)) )
+( quants <- nig$q(c(0.2, 0.6), a = 0, b = 2) )
 nig$p(quants)
 
 sims <- nig$r(55000L)
