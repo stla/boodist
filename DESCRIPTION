@@ -11,10 +11,13 @@ BugReports: https://github.com/stla/boodist/issues
 Imports: 
     R6,
     Rcpp,
+    RcppNumerical,
     stats
 LinkingTo: 
     BH,
-    Rcpp
+    Rcpp,
+    RcppEigen,
+    RcppNumerical,
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 SystemRequirements: C++17

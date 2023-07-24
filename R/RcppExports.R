@@ -157,6 +157,10 @@ ig_kurtosis_excess <- function(mu, lambda) {
     .Call(`_boodist_ig_kurtosis_excess`, mu, lambda)
 }
 
+pnig_rcpp <- function(q, mu, alpha, beta, delta) {
+    .Call(`_boodist_pnig_rcpp`, q, mu, alpha, beta, delta)
+}
+
 rcpp_dskewNormal <- function(x, xi, omega, alpha) {
     .Call(`_boodist_rcpp_dskewNormal`, x, xi, omega, alpha)
 }
