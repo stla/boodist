@@ -65,9 +65,10 @@ Rcpp::NumericVector pnig_rcpp(Rcpp::NumericVector q,
   return out;
 }
 
+
 // [[Rcpp::export]]
 Rcpp::NumericVector qnig_rcpp(
-  Rcpp::NumericVector p, const double tan_a, const double tan_b,
+  Rcpp::NumericVector p, Rcpp::NumericVector tan_a, Rcpp::NumericVector tan_b,
   const double mu, const double alpha, const double beta, const double delta
 ) {
 
@@ -76,8 +77,6 @@ Rcpp::NumericVector qnig_rcpp(
   };
 
   const double lower = -std::numeric_limits<double>::infinity();
-  const double a = std::atan(tan_a);
-  const double b = std::atan(tan_b);
 
   int n = p.size();
   Rcpp::NumericVector out(n);
@@ -90,13 +89,15 @@ Rcpp::NumericVector qnig_rcpp(
           pdf, lower, std::tan(atanq), 15, 1e-6, &error
       ) - prob;
     };
+    const double a = std::atan(tan_a(i));
+    const double b = std::atan(tan_b(i));
     std::uintmax_t max_iter = 300;
     std::pair<double, double> interval = toms748_solve(
       integral, a, b,
       [](double l, double r){return fabs(l-r) < 1e-6;},
       max_iter
     );
-    if(max_iter == 300) {
+    if(max_iter >= 300) {
       Rcpp::warning("Reached maximum number of iterations.");
     }
     out(i) = (std::tan(interval.first) + std::tan(interval.second)) / 2;

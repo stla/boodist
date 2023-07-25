@@ -126,7 +126,7 @@ The cumulative probabilities corresponding to \code{q}, with two
 Quantile function of the normal-inverse
   Gaussian distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$q(p, a = -30, b = 30)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{NormalInverseGaussian$q(p, bounds = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -134,8 +134,8 @@ Quantile function of the normal-inverse
 \describe{
 \item{\code{p}}{numeric vector of probabilities}
 
-\item{\code{a, b}}{bounds enclosing the quantiles to be found (see the
-\strong{Note})}
+\item{\code{bounds}}{bounds enclosing the quantiles to be found (see the
+\strong{Note}), or \code{NULL} for automatic bounds}
 }
 \if{html}{\out{</div>}}
 }

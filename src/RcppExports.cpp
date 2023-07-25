@@ -519,14 +519,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // qnig_rcpp
-Rcpp::NumericVector qnig_rcpp(Rcpp::NumericVector p, const double tan_a, const double tan_b, const double mu, const double alpha, const double beta, const double delta);
+Rcpp::NumericVector qnig_rcpp(Rcpp::NumericVector p, Rcpp::NumericVector tan_a, Rcpp::NumericVector tan_b, const double mu, const double alpha, const double beta, const double delta);
 RcppExport SEXP _boodist_qnig_rcpp(SEXP pSEXP, SEXP tan_aSEXP, SEXP tan_bSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP betaSEXP, SEXP deltaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
-    Rcpp::traits::input_parameter< const double >::type tan_a(tan_aSEXP);
-    Rcpp::traits::input_parameter< const double >::type tan_b(tan_bSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tan_a(tan_aSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tan_b(tan_bSEXP);
     Rcpp::traits::input_parameter< const double >::type mu(muSEXP);
     Rcpp::traits::input_parameter< const double >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< const double >::type beta(betaSEXP);

@@ -8,6 +8,19 @@ rnig <- function(n, mu, alpha, beta, delta) {
   rnorm(n, mu + beta * v, sqrt(v))
 }
 
+#' @importFrom stats approxfun
+#' @noRd
+qbounds_distr <- function(distr, p) {
+  mn  <- distr$mean()
+  std <- distr$sd()
+  q_ <- seq(mn - 6*std, mn + 6*std, length.out = 200L)
+  prob_ <- distr$p(q_)
+  f <- approxfun(prob_, q_)
+  guess <- f(p)
+  absguess <- abs(guess)
+  c(guess - 0.1*absguess, guess + 0.1*absguess)
+}
+
 #' @title Normal-inverse Gaussian distribution
 #' @description A R6 class to represent a normal-inverse Gaussian distribution.
 #' @details
@@ -124,15 +137,25 @@ NormalInverseGaussian <- R6Class(
     #' @description Quantile function of the normal-inverse
     #'   Gaussian distribution.
     #' @param p numeric vector of probabilities
-    #' @param a,b bounds enclosing the quantiles to be found (see the
-    #'   \strong{Note})
+    #' @param bounds bounds enclosing the quantiles to be found (see the
+    #'   \strong{Note}), or \code{NULL} for automatic bounds
     #' @return The quantiles corresponding to \code{p}.
-    "q" = function(p, a = -30, b = 30) {
-      if(any(self$p(a) - p >= 0)) {
-        stop("The lower bound `a` is too large.")
-      }
-      if(any(self$p(b) - p <= 0)) {
-        stop("The upper bound `b` is too small.")
+    "q" = function(p, bounds = NULL) {
+      if(!is.null(bounds)) {
+        a <- bounds[, 1L]
+        b <- bounds[, 2L]
+        if(any(self$p(a) - p >= 0)) {
+          stop("The lower bound is too large.")
+        }
+        if(any(self$p(b) - p <= 0)) {
+          stop("The upper bound is too small.")
+        }
+      } else {
+        bounds <- vapply(p, function(prob) {
+          qbounds_distr(self, prob)
+        }, numeric(2L))
+        a <- bounds[1L, ]
+        b <- bounds[2L, ]
       }
       mu    <- private[[".mu"]]
       alpha <- private[[".alpha"]]

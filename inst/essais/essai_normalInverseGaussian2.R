@@ -14,6 +14,17 @@ y <- nig$p(q_)
 lines(q_, y, col = "red", lwd = 3, lty = "dashed")
 
 
+q <- nig$mean() + 6*nig$sd()
+nig$p(q)
+
+mn <- nig$mean()
+std <- nig$sd()
+q_ <- seq(mn - 6*std, mn + 6*std, length.out = 200L)
+prob_ <- nig$p(q_)
+f <- approxfun(prob_, q_)
+f(0.6)
+
+
 p <- 0.6
 
 f <- function(aq) {
