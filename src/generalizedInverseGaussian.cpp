@@ -179,8 +179,8 @@ Rcpp::NumericVector qgig_rcpp(
           pdf, 0.0, -std::log1p(-f_q), 15, 1e-6, &error
       ) - prob;
     };
-    const double a = std::expm1(-g_a(i));
-    const double b = std::expm1(-g_b(i));
+    const double a = -std::expm1(-g_a(i));
+    const double b = -std::expm1(-g_b(i));
     std::uintmax_t max_iter = 300;
     std::pair<double, double> interval = toms748_solve(
       integral, a, b,
