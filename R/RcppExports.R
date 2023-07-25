@@ -81,6 +81,10 @@ find_chisq_df <- function(delta, q, p) {
     .Call(`_boodist_find_chisq_df`, delta, q, p)
 }
 
+rgig_rcpp <- function(n, omega, lambda) {
+    .Call(`_boodist_rgig_rcpp`, n, omega, lambda)
+}
+
 rcpp_dhexp <- function(x, probs, rates) {
     .Call(`_boodist_rcpp_dhexp`, x, probs, rates)
 }

@@ -264,6 +264,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rgig_rcpp
+Rcpp::NumericVector rgig_rcpp(const unsigned n, const double omega, const double lambda);
+RcppExport SEXP _boodist_rgig_rcpp(SEXP nSEXP, SEXP omegaSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const unsigned >::type n(nSEXP);
+    Rcpp::traits::input_parameter< const double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< const double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rgig_rcpp(n, omega, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_dhexp
 Rcpp::NumericVector rcpp_dhexp(Rcpp::NumericVector x, Rcpp::NumericVector probs, Rcpp::NumericVector rates);
 RcppExport SEXP _boodist_rcpp_dhexp(SEXP xSEXP, SEXP probsSEXP, SEXP ratesSEXP) {
@@ -679,6 +692,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_t_kurtosis_excess", (DL_FUNC) &_boodist_t_kurtosis_excess, 2},
     {"_boodist_find_chisq_ncp", (DL_FUNC) &_boodist_find_chisq_ncp, 3},
     {"_boodist_find_chisq_df", (DL_FUNC) &_boodist_find_chisq_df, 3},
+    {"_boodist_rgig_rcpp", (DL_FUNC) &_boodist_rgig_rcpp, 3},
     {"_boodist_rcpp_dhexp", (DL_FUNC) &_boodist_rcpp_dhexp, 3},
     {"_boodist_rcpp_phexp", (DL_FUNC) &_boodist_rcpp_phexp, 4},
     {"_boodist_rcpp_qhexp", (DL_FUNC) &_boodist_rcpp_qhexp, 4},

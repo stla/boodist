@@ -4,7 +4,7 @@
 
 double psi(const double x, const double alpha, const double lambda) {
   //const double alpha = std::sqrt(omega*omega + lambda*lambda) - lambda;
-  return -alpha*(std::cosh(x) - 1) - lambda*(std::exp(x) - x - 1);
+  return -alpha*(std::cosh(x) - 1) - lambda*(std::expm1(x) - x);
 }
 
 std::pair<double,double> psipsiprime(
@@ -22,7 +22,7 @@ double chi(
     const double eta, const double zeta, const double theta, const double xi
 ) {
   double out;
-  if(x < sprime) {
+  if(x < -sprime) {
     out = std::exp(-theta + xi*(x + s));
   } else if(x <= tprime) {
     out = 1.0;
@@ -32,8 +32,9 @@ double chi(
   return out;
 }
 
+// [[Rcpp::export]]
 Rcpp::NumericVector rgig_rcpp(
-  const unsigned n, const double omega, const double lambda
+  const unsigned n, const double lambda, const double omega
 ) {
   const double alpha = std::sqrt(omega*omega + lambda*lambda) - lambda;
 
