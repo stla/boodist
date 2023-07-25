@@ -265,15 +265,45 @@ BEGIN_RCPP
 END_RCPP
 }
 // rgig_rcpp
-Rcpp::NumericVector rgig_rcpp(const unsigned n, const double omega, const double lambda);
-RcppExport SEXP _boodist_rgig_rcpp(SEXP nSEXP, SEXP omegaSEXP, SEXP lambdaSEXP) {
+Rcpp::NumericVector rgig_rcpp(const unsigned n, const double lambda, const double omega);
+RcppExport SEXP _boodist_rgig_rcpp(SEXP nSEXP, SEXP lambdaSEXP, SEXP omegaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const unsigned >::type n(nSEXP);
-    Rcpp::traits::input_parameter< const double >::type omega(omegaSEXP);
     Rcpp::traits::input_parameter< const double >::type lambda(lambdaSEXP);
-    rcpp_result_gen = Rcpp::wrap(rgig_rcpp(n, omega, lambda));
+    Rcpp::traits::input_parameter< const double >::type omega(omegaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rgig_rcpp(n, lambda, omega));
+    return rcpp_result_gen;
+END_RCPP
+}
+// pgig_rcpp
+Rcpp::NumericVector pgig_rcpp(Rcpp::NumericVector q, const double theta, const double eta, const double lambda);
+RcppExport SEXP _boodist_pgig_rcpp(SEXP qSEXP, SEXP thetaSEXP, SEXP etaSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< const double >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< const double >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< const double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(pgig_rcpp(q, theta, eta, lambda));
+    return rcpp_result_gen;
+END_RCPP
+}
+// qgig_rcpp
+Rcpp::NumericVector qgig_rcpp(Rcpp::NumericVector p, Rcpp::NumericVector g_a, Rcpp::NumericVector g_b, const double theta, const double eta, const double lambda);
+RcppExport SEXP _boodist_qgig_rcpp(SEXP pSEXP, SEXP g_aSEXP, SEXP g_bSEXP, SEXP thetaSEXP, SEXP etaSEXP, SEXP lambdaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type g_a(g_aSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type g_b(g_bSEXP);
+    Rcpp::traits::input_parameter< const double >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< const double >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< const double >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(qgig_rcpp(p, g_a, g_b, theta, eta, lambda));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -693,6 +723,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_find_chisq_ncp", (DL_FUNC) &_boodist_find_chisq_ncp, 3},
     {"_boodist_find_chisq_df", (DL_FUNC) &_boodist_find_chisq_df, 3},
     {"_boodist_rgig_rcpp", (DL_FUNC) &_boodist_rgig_rcpp, 3},
+    {"_boodist_pgig_rcpp", (DL_FUNC) &_boodist_pgig_rcpp, 4},
+    {"_boodist_qgig_rcpp", (DL_FUNC) &_boodist_qgig_rcpp, 6},
     {"_boodist_rcpp_dhexp", (DL_FUNC) &_boodist_rcpp_dhexp, 3},
     {"_boodist_rcpp_phexp", (DL_FUNC) &_boodist_rcpp_phexp, 4},
     {"_boodist_rcpp_qhexp", (DL_FUNC) &_boodist_rcpp_qhexp, 4},

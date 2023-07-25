@@ -10,3 +10,9 @@ y <- dgig(x)
 
 plot(x, y, type = "l")
 lines(density(sims_gig, n = 1000), col ="red")
+
+#### p & q ####
+theta <- 2; eta <- 3; lambda <- 2
+q <- 3
+( p <- boodist:::pgig_rcpp(q, theta, eta, lambda) )
+boodist:::qgig_rcpp(p, 2, 4, theta, eta, lambda)

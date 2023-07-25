@@ -33,7 +33,7 @@ double chi(
 
 // [[Rcpp::export]]
 Rcpp::NumericVector rgig_rcpp(
-  const unsigned n, const double lambda, const double omega
+  const unsigned n, const double lambda, const double omega // omega <=> theta
 ) {
   const double alpha = std::sqrt(omega*omega + lambda*lambda) - lambda;
 
@@ -102,24 +102,96 @@ Rcpp::NumericVector rgig_rcpp(
 
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
-double dgig(double x, double theta, double eta, double p) {
+double dgig(double x, double theta, double eta, double lambda) {
   double y = x / eta;
-  return 1.0 / (2.0 * eta * cyl_bessel_k(p, theta)) * std::pow(y, p-1) *
-    std::exp(-theta * (y + 1.0/y) / 2.0);
+  return 1.0 / (2.0 * eta * cyl_bessel_k(lambda, theta)) *
+    std::pow(y, lambda-1) * std::exp(-theta * (y + 1.0/y) / 2.0);
 }
 
 class GIGpdf : public Func {
 private:
   double theta;
   double eta;
-  double p;
+  double lambda;
 
 public:
-  GIGpdf(double theta_, double eta_, double p_)
-    : theta(theta_), eta(eta_), p(p_) {}
+  GIGpdf(double theta_, double eta_, double lambda_)
+    : theta(theta_), eta(eta_), lambda(lambda_) {}
 
   double operator()(const double& x) const {
-    return dgig(x, theta, eta, p);
+    return dgig(x, theta, eta, lambda);
   }
 };
 
+
+// [[Rcpp::export]]
+Rcpp::NumericVector pgig_rcpp(Rcpp::NumericVector q,
+                              const double theta,
+                              const double eta,
+                              const double lambda) {
+  GIGpdf f(theta, eta, lambda);
+  const int subdiv = 150;
+  const double eps_abs = 1e-8;
+  const double eps_rel = 1e-8;
+  int n = q.size();
+  Rcpp::NumericVector out(n);
+  Rcpp::NumericVector error_estimate(n);
+  Rcpp::IntegerVector error_code(n);
+  for(int i = 0; i < n; i++) {
+    double err_est;
+    int err_code;
+    const double upper = q(i);
+    const double res =
+      integrate(f, 0.0, upper, err_est, err_code, subdiv, eps_abs, eps_rel,
+                Integrator<double>::GaussKronrod201);
+    out(i) = res;
+    error_estimate(i) = err_est;
+    error_code(i) = err_code;
+    if(err_code != 0) {
+      Rcpp::warning("An anomaly occured (see the error codes).");
+    }
+  }
+  out.attr("error_estimate") = error_estimate;
+  out.attr("error_code") = error_code;
+  return out;
+}
+
+
+
+// [[Rcpp::export]]
+Rcpp::NumericVector qgig_rcpp(
+    Rcpp::NumericVector p, Rcpp::NumericVector g_a, Rcpp::NumericVector g_b,
+    const double theta, const double eta, const double lambda
+) {
+
+  auto pdf = [theta, eta, lambda](double x) {
+    return dgig(x, theta, eta, lambda);
+  };
+
+  int n = p.size();
+  Rcpp::NumericVector out(n);
+
+  for(int i = 0; i < n; i++) {
+    double prob = p(i);
+    auto integral = [pdf, prob](double f_q) {
+      double error;
+      return gauss_kronrod<double, 61>::integrate(
+          pdf, 0.0, -std::log1p(-f_q), 15, 1e-6, &error
+      ) - prob;
+    };
+    const double a = std::expm1(-g_a(i));
+    const double b = std::expm1(-g_b(i));
+    std::uintmax_t max_iter = 300;
+    std::pair<double, double> interval = toms748_solve(
+      integral, a, b,
+      [](double l, double r){return fabs(l-r) < 1e-6;},
+      max_iter
+    );
+    if(max_iter >= 300) {
+      Rcpp::warning("Reached maximum number of iterations.");
+    }
+    out(i) = -(std::log1p(-interval.first) + std::log1p(-interval.second)) / 2;
+  }
+
+  return out;
+}
