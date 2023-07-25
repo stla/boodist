@@ -10,7 +10,15 @@
 #include <boost/math/distributions/inverse_gaussian.hpp>
 #include <boost/math/distributions/skew_normal.hpp>
 #include <boost/math/distributions/non_central_chi_squared.hpp>
-
 using namespace boost::math;
+#include <RcppNumerical.h>
+using namespace Numer;
+#include <boost/math/special_functions/bessel.hpp>
+#include <boost/math/quadrature/gauss_kronrod.hpp>
+using namespace boost::math::quadrature;
+#include <boost/math/tools/roots.hpp>
+using namespace boost::math::tools;
+#include <cmath>
+
 
 #endif

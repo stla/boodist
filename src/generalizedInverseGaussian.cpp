@@ -3,7 +3,6 @@
 #include <boost/random/uniform_real_distribution.hpp>
 
 double psi(const double x, const double alpha, const double lambda) {
-  //const double alpha = std::sqrt(omega*omega + lambda*lambda) - lambda;
   return -alpha*(std::cosh(x) - 1) - lambda*(std::expm1(x) - x);
 }
 
@@ -100,4 +99,27 @@ Rcpp::NumericVector rgig_rcpp(
   }
   return out;
 }
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+double dgig(double x, double theta, double eta, double p) {
+  double y = x / eta;
+  return 1.0 / (2.0 * eta * cyl_bessel_k(p, theta)) * std::pow(y, p-1) *
+    std::exp(-theta * (y + 1.0/y) / 2.0);
+}
+
+class GIGpdf : public Func {
+private:
+  double theta;
+  double eta;
+  double p;
+
+public:
+  GIGpdf(double theta_, double eta_, double p_)
+    : theta(theta_), eta(eta_), p(p_) {}
+
+  double operator()(const double& x) const {
+    return dgig(x, theta, eta, p);
+  }
+};
 

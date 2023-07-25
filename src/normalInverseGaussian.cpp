@@ -1,18 +1,10 @@
-#include <RcppNumerical.h>
-#include <boost/math/special_functions/bessel.hpp>
-#include <boost/math/quadrature/gauss_kronrod.hpp>
-using namespace boost::math::quadrature;
-#include <boost/math/tools/roots.hpp>
-using namespace boost::math::tools;
 #include "boodist.h"
-using namespace Numer;
-#include <cmath>
 
 double dnig(double x, double mu, double alpha, double beta, double delta) {
   double gamm = std::sqrt(alpha * alpha - beta * beta);
   double s = std::sqrt(delta * delta + (x - mu) * (x - mu));
   return alpha * delta * cyl_bessel_k(1, alpha * s) *
-         exp(delta * gamm + beta * (x - mu)) / (M_PI * s);
+         std::exp(delta * gamm + beta * (x - mu)) / (M_PI * s);
 }
 
 class NIGpdf : public Func {
