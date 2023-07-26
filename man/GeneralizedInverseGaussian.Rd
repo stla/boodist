@@ -17,9 +17,9 @@ The cumulative distribution function is evaluated by integrating the
   \code{"error_code"}. The error code is 0 if no problem is detected. If an
   error code is not 0, a warning is thrown. The quantile function is
   evaluated by root-finding and then the user must provide some bounds
-  enclosing the values of the quantiles. A maximum number of iterations is
-  fixed in the root-finding algorithm. If it is reached, a warning is
-  thrown.
+  enclosing the values of the quantiles or choose the automatic bounds.
+  A maximum number of iterations is fixed in the root-finding algorithm.
+  If it is reached, a warning is thrown.
 }
 \examples{
 if(require("plotly")) {
@@ -125,7 +125,7 @@ Density function of the generalized inverse
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{numeric vector of positive numbers}
+\item{\code{x}}{vector of positive numbers}
 
 \item{\code{log}}{Boolean, whether to return the log-density}
 }
@@ -148,7 +148,7 @@ Cumulative distribution function of the generalized inverse
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{q}}{numeric vector of quantiles}
+\item{\code{q}}{numeric vector of quantiles (\code{>= 0})}
 }
 \if{html}{\out{</div>}}
 }

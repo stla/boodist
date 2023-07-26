@@ -32,9 +32,9 @@ qbounds_distr <- function(distr, p) {
 #'   \code{"error_code"}. The error code is 0 if no problem is detected. If an
 #'   error code is not 0, a warning is thrown. The quantile function is
 #'   evaluated by root-finding and then the user must provide some bounds
-#'   enclosing the values of the quantiles. A maximum number of iterations is
-#'   fixed in the root-finding algorithm. If it is reached, a warning is
-#'   thrown.
+#'   enclosing the values of the quantiles or choose the automatic bounds.
+#'   A maximum number of iterations is fixed in the root-finding algorithm.
+#'   If it is reached, a warning is thrown.
 #' @export
 #' @importFrom R6 R6Class
 NormalInverseGaussian <- R6Class(
