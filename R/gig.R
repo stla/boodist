@@ -28,6 +28,46 @@ qbounds_distr2 <- function(distr, p) {
 #'   thrown.
 #' @export
 #' @importFrom R6 R6Class
+#' @examples
+#' if(require("plotly")) {
+#' library(boodist)
+#'
+#' x_ <- seq(0, 3, length.out = 100L)
+#' lambda_ <- seq(-1, 1, length.out = 100L)
+#' dsty <- vapply(lambda_, function(lambda) {
+#'   GeneralizedInverseGaussian$new(theta = 1, eta = 1, lambda)$d(x_)
+#' }, numeric(length(x_)))
+#' #
+#' txt <- matrix(NA_character_, nrow = length(x_), ncol = length(lambda_))
+#' for(i in 1L:nrow(txt)) {
+#'   for(j in 1L:ncol(txt)) {
+#'     txt[i, j] <- paste0(
+#'       "x: ", formatC(x_[i]),
+#'       "<br> lambda: ", formatC(lambda_[j]),
+#'       "<br> density: ", formatC(dsty[i, j])
+#'     )
+#'   }
+#' }
+#' #
+#' plot_ly(
+#'   x = ~lambda_, y = ~x_, z = ~dsty, type = "surface",
+#'   text = txt, hoverinfo = "text", showscale = FALSE
+#' ) %>% layout(
+#'   title = "Generalized inverse Gaussian distribution",
+#'   margin = list(t = 40, r= 5, b = 5, l = 5),
+#'   scene = list(
+#'     xaxis = list(
+#'       title = "lambda"
+#'     ),
+#'     yaxis = list(
+#'       title = "x"
+#'     ),
+#'     zaxis = list(
+#'       title = "density"
+#'     )
+#'   )
+#' )
+#' }
 GeneralizedInverseGaussian <- R6Class(
   "GeneralizedInverseGaussian",
 
@@ -97,8 +137,12 @@ GeneralizedInverseGaussian <- R6Class(
         -log(2 * besselK(theta, lambda)) + (lambda - 1)*log(x/eta) -
           theta*(x/eta + eta/x)/2 - log(eta)
       } else {
-        1 / (2 * besselK(theta, lambda)) * (x/eta)^(lambda-1) *
-          exp(-theta*(x/eta + eta/x)/2) / eta
+        ifelse(
+          x == 0,
+          0,
+          1 / (2 * besselK(theta, lambda)) * (x/eta)^(lambda-1) *
+            exp(-theta*(x/eta + eta/x)/2) / eta
+        )
       }
     },
 
