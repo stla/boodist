@@ -18,7 +18,9 @@ LinkingTo:
     BH,
     Rcpp,
     RcppEigen,
-    RcppNumerical,
+    RcppNumerical
+Suggests:
+    plotly
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 SystemRequirements: C++17

@@ -9,6 +9,46 @@ A R6 class to represent an inverse Gamma distribution.
 \details{
 See \href{https://en.wikipedia.org/wiki/Inverse-gamma_distribution}{Wikipedia}.
 }
+\examples{
+if(require("plotly")) {
+x_ <- seq(0, 2, length.out = 100L)
+alpha_ <- seq(0.5, 2.5, length.out = 100L)
+dsty <- vapply(alpha_, function(alpha) {
+  InverseGamma$new(alpha, beta = 1)$d(x_)
+}, numeric(length(x_)))
+dsty[1, ] <- 0
+#
+txt <- matrix(NA_character_, nrow = length(x_), ncol = length(alpha_))
+for(i in 1L:nrow(txt)) {
+  for(j in 1L:ncol(txt)) {
+    txt[i, j] <- paste0(
+      "x: ", formatC(x_[i]),
+      "<br> alpha: ", formatC(alpha_[j]),
+      "<br> density: ", formatC(dsty[i, j])
+    )
+  }
+}
+#
+plot_ly(
+  x = ~alpha_, y = ~x_, z = ~dsty, type = "surface",
+  text = txt, hoverinfo = "text", showscale = FALSE
+) \%>\% layout(
+  title = "Inverse Gamma distribution",
+  margin = list(t = 40, r= 5, b = 5, l = 5),
+  scene = list(
+    xaxis = list(
+      title = "alpha"
+    ),
+    yaxis = list(
+      title = "x"
+    ),
+    zaxis = list(
+      title = "density"
+    )
+  )
+)
+}
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
