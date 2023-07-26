@@ -96,7 +96,7 @@ NormalInverseGaussian <- R6Class(
     #' @param alpha tail heaviness parameter, \code{>0}
     #' @param beta asymmetry parameter
     #' @param delta scale parameter, \code{>0}
-    #' @return An \code{inverseGaussian} object.
+    #' @return A \code{NormalInverseGaussian} object.
     "initialize" = function(mu, alpha, beta, delta) {
       stopifnot(alpha > 0, alpha > beta)
       stopifnot(delta > 0)

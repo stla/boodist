@@ -73,7 +73,7 @@ New normal-inverse Gaussian distribution.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-An \code{inverseGaussian} object.
+A \code{NormalInverseGaussian} object.
 }
 }
 \if{html}{\out{<hr>}}
