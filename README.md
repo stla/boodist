@@ -12,6 +12,8 @@ ___
 
 ![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/inverseGaussian.png)
 
+![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/generalizedInverseGaussian.png)
+
 ![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/normalInverseGaussian.png)
 
 ![](https://raw.githubusercontent.com/stla/boodist/main/inst/screenshots/skewNormal.png)
