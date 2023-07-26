@@ -87,13 +87,19 @@ GeneralizedInverseGaussian <- R6Class(
     #' @description Density function of the generalized inverse
     #'   Gaussian distribution.
     #' @param x numeric vector of positive numbers
+    #' @param log Boolean, whether to return the log-density
     #' @return The density or the log-density evaluated at \code{x}.
-    "d" = function(x) {
+    "d" = function(x, log = FALSE) {
       theta  <- private[[".theta"]]
       eta    <- private[[".eta"]]
       lambda <- private[[".lambda"]]
-      1 / (2 * besselK(theta, lambda)) * (x/eta)^(lambda-1) *
-        exp(-(x/eta + eta/x)/2) / eta
+      if(log) {
+        -log(2 * besselK(theta, lambda)) + (lambda - 1)*log(x/eta) -
+          theta*(x/eta + eta/x)/2 - log(eta)
+      } else {
+        1 / (2 * besselK(theta, lambda)) * (x/eta)^(lambda-1) *
+          exp(-theta*(x/eta + eta/x)/2) / eta
+      }
     },
 
     #' @description Cumulative distribution function of the generalized inverse

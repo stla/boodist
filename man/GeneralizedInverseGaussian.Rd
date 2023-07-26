@@ -78,13 +78,15 @@ A \code{GeneralizedInverseGaussian} object.
 Density function of the generalized inverse
   Gaussian distribution.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$d(x)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$d(x, log = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{x}}{numeric vector of positive numbers}
+
+\item{\code{log}}{Boolean, whether to return the log-density}
 }
 \if{html}{\out{</div>}}
 }
