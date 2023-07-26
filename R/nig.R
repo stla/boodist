@@ -110,15 +110,21 @@ NormalInverseGaussian <- R6Class(
     #' @description Density function of the normal-inverse
     #'   Gaussian distribution.
     #' @param x numeric vector
+    #' @param log Boolean, whether to return the logarithm of the density
     #' @return The density or the log-density evaluated at \code{x}.
-    "d" = function(x) {
+    "d" = function(x, log = FALSE) {
       mu    <- private[[".mu"]]
       alpha <- private[[".alpha"]]
       beta  <- private[[".beta"]]
       delta <- private[[".delta"]]
       gamma <- private[[".gamma"]]
       s <- sqrt(delta^2 + (x-mu)^2)
-      alpha*delta*besselK(alpha*s, 1) * exp(delta*gamma+beta*(x-mu)) / (pi*s)
+      if(log) {
+        log(alpha) + log(delta) + log(besselK(alpha*s, 1)) +
+          delta*gamma+beta*(x-mu) - log(pi*s)
+      } else {
+        alpha*delta*besselK(alpha*s, 1) * exp(delta*gamma+beta*(x-mu)) / (pi*s)
+      }
     },
 
     #' @description Cumulative distribution function of the normal-inverse

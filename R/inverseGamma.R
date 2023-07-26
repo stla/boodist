@@ -12,7 +12,6 @@
 #' dsty <- vapply(alpha_, function(alpha) {
 #'   InverseGamma$new(alpha, beta = 1)$d(x_)
 #' }, numeric(length(x_)))
-#' dsty[1, ] <- 0
 #' #
 #' txt <- matrix(NA_character_, nrow = length(x_), ncol = length(alpha_))
 #' for(i in 1L:nrow(txt)) {
