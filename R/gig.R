@@ -3,7 +3,7 @@
 qbounds_distr2 <- function(distr, p) {
   mn  <- distr$mean()
   std <- distr$sd()
-  q_ <- seq(mn - 6*std, mn + 6*std, length.out = 200L)
+  q_ <- seq(max(0, mn - 6*std), mn + 6*std, length.out = 200L)
   prob_ <- distr$p(q_)
   f <- approxfun(prob_, q_)
   guess <- f(p)
@@ -86,7 +86,7 @@ GeneralizedInverseGaussian <- R6Class(
 
     #' @description Density function of the generalized inverse
     #'   Gaussian distribution.
-    #' @param x numeric vector
+    #' @param x numeric vector of positive numbers
     #' @return The density or the log-density evaluated at \code{x}.
     "d" = function(x) {
       theta  <- private[[".theta"]]
@@ -153,6 +153,16 @@ GeneralizedInverseGaussian <- R6Class(
       theta  <- private[[".theta"]]
       eta    <- private[[".eta"]]
       lambda <- private[[".lambda"]]
+      eta * besselK(theta, lambda + 1) / besselK(theta, lambda)
+    },
+
+    #' @description Mode of the generalized inverse Gaussian distribution.
+    #' @return The mode of the generalized inverse Gaussian distribution.
+    "mode" = function() {
+      theta  <- private[[".theta"]]
+      eta    <- private[[".eta"]]
+      lambda <- private[[".lambda"]]
+      eta * (lambda - 1 + sqrt((lambda-1)^2 + theta^2)) / theta
     },
 
     #' @description Standard deviation of the generalized inverse Gaussian
@@ -169,28 +179,10 @@ GeneralizedInverseGaussian <- R6Class(
       theta  <- private[[".theta"]]
       eta    <- private[[".eta"]]
       lambda <- private[[".lambda"]]
-    },
-
-    #' @description Skewness of the generalized inverse Gaussian distribution.
-    #' @return The skewness of the generalized inverse Gaussian distribution.
-    "skewness" = function() {
-      theta  <- private[[".theta"]]
-      eta    <- private[[".eta"]]
-      lambda <- private[[".lambda"]]
-    },
-
-    #' @description Kurtosis of the generalized inverse Gaussian distribution.
-    #' @return The kurtosis of the generalized inverse Gaussian distribution.
-    "kurtosis" = function() {
-      self$kurtosisExcess() + 3
-    },
-
-    #' @description Kurtosis excess of the generalized inverse Gaussian distribution.
-    #' @return The kurtosis excess of the generalized inverse Gaussian distribution.
-    "kurtosisExcess" = function() {
-      theta  <- private[[".theta"]]
-      eta    <- private[[".eta"]]
-      lambda <- private[[".lambda"]]
+      K <- besselK(theta, lambda)
+      eta^2 *
+        (besselK(theta, lambda + 2) / K - (besselK(theta, lambda + 1) / K)^2)
     }
+
   )
 )

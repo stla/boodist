@@ -41,11 +41,9 @@ The cumulative distribution function is evaluated by integrating the
 \item \href{#method-GeneralizedInverseGaussian-q}{\code{GeneralizedInverseGaussian$q()}}
 \item \href{#method-GeneralizedInverseGaussian-r}{\code{GeneralizedInverseGaussian$r()}}
 \item \href{#method-GeneralizedInverseGaussian-mean}{\code{GeneralizedInverseGaussian$mean()}}
+\item \href{#method-GeneralizedInverseGaussian-mode}{\code{GeneralizedInverseGaussian$mode()}}
 \item \href{#method-GeneralizedInverseGaussian-sd}{\code{GeneralizedInverseGaussian$sd()}}
 \item \href{#method-GeneralizedInverseGaussian-variance}{\code{GeneralizedInverseGaussian$variance()}}
-\item \href{#method-GeneralizedInverseGaussian-skewness}{\code{GeneralizedInverseGaussian$skewness()}}
-\item \href{#method-GeneralizedInverseGaussian-kurtosis}{\code{GeneralizedInverseGaussian$kurtosis()}}
-\item \href{#method-GeneralizedInverseGaussian-kurtosisExcess}{\code{GeneralizedInverseGaussian$kurtosisExcess()}}
 \item \href{#method-GeneralizedInverseGaussian-clone}{\code{GeneralizedInverseGaussian$clone()}}
 }
 }
@@ -86,7 +84,7 @@ Density function of the generalized inverse
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{numeric vector}
+\item{\code{x}}{numeric vector of positive numbers}
 }
 \if{html}{\out{</div>}}
 }
@@ -174,6 +172,19 @@ The mean of the generalized inverse Gaussian distribution.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeneralizedInverseGaussian-mode"></a>}}
+\if{latex}{\out{\hypertarget{method-GeneralizedInverseGaussian-mode}{}}}
+\subsection{Method \code{mode()}}{
+Mode of the generalized inverse Gaussian distribution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$mode()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+The mode of the generalized inverse Gaussian distribution.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-GeneralizedInverseGaussian-sd"></a>}}
 \if{latex}{\out{\hypertarget{method-GeneralizedInverseGaussian-sd}{}}}
 \subsection{Method \code{sd()}}{
@@ -199,45 +210,6 @@ Variance of the generalized inverse Gaussian distribution.
 
 \subsection{Returns}{
 The variance of the generalized inverse Gaussian distribution.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GeneralizedInverseGaussian-skewness"></a>}}
-\if{latex}{\out{\hypertarget{method-GeneralizedInverseGaussian-skewness}{}}}
-\subsection{Method \code{skewness()}}{
-Skewness of the generalized inverse Gaussian distribution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$skewness()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-The skewness of the generalized inverse Gaussian distribution.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GeneralizedInverseGaussian-kurtosis"></a>}}
-\if{latex}{\out{\hypertarget{method-GeneralizedInverseGaussian-kurtosis}{}}}
-\subsection{Method \code{kurtosis()}}{
-Kurtosis of the generalized inverse Gaussian distribution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$kurtosis()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-The kurtosis of the generalized inverse Gaussian distribution.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GeneralizedInverseGaussian-kurtosisExcess"></a>}}
-\if{latex}{\out{\hypertarget{method-GeneralizedInverseGaussian-kurtosisExcess}{}}}
-\subsection{Method \code{kurtosisExcess()}}{
-Kurtosis excess of the generalized inverse Gaussian distribution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GeneralizedInverseGaussian$kurtosisExcess()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-The kurtosis excess of the generalized inverse Gaussian distribution.
 }
 }
 \if{html}{\out{<hr>}}
