@@ -8,7 +8,7 @@ qbounds_distr2 <- function(distr, p) {
   f <- approxfun(prob_, q_)
   guess <- f(p)
   absguess <- abs(guess)
-  c(guess - 0.1*absguess, guess + 0.1*absguess)
+  c(max(0, guess - 0.1*absguess), guess + 0.1*absguess)
 }
 
 #' @title Generalized inverse Gaussian distribution
