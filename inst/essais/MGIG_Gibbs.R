@@ -22,11 +22,6 @@
 library(boodist)
 
 rMGIG_GS <- function(la, Psi, Ga, mc = 1000L, burn = mc/2L, print = TRUE){
-  # function for univariate GIG distribution
-  myrgig <- function(n, Lambda, Chi, Psi){
-    LambdaChiPsi <- cbind(Lambda, Chi, Psi)
-    apply(LambdaChiPsi, 1, function(x) rgig(1, lambda=x[1], chi=x[2], psi=x[3]))
-  }
 
   # dimension
   p <- nrow(Psi)
@@ -110,9 +105,11 @@ rMGIG_GS <- function(la, Psi, Ga, mc = 1000L, burn = mc/2L, print = TRUE){
 la <- 2
 Psi <- rWishart(1L, df = 6, Sigma = diag(3L))[, , 1L]
 Ga <- toeplitz(4:2)
-sims <- rMGIG_GS(la, Psi, Ga, mc = 1000L)
+sims <- rMGIG_GS(la, Psi, Ga, mc = 10000L, burn = 1000L)
 
 sims11 <- sims[1L, 1L, ]
 plot(sims11, type = "l")
 
+plot(density(sims11))
+mean(sims11)
 
