@@ -102,10 +102,10 @@ rMGIG_GS <- function(la, Psi, Ga, mc = 1000L, burn = mc/2L, print = TRUE){
 }
 
 
-la <- 2
-Psi <- rWishart(1L, df = 6, Sigma = diag(3L))[, , 1L]
-Ga <- toeplitz(4:2)
-sims <- rMGIG_GS(la, Psi, Ga, mc = 10000L, burn = 1000L)
+la <- 3
+Psi <- diag(c(4,5))#rWishart(1L, df = 6, Sigma = diag(2L))[, , 1L]
+Ga <- toeplitz(4:3)
+sims <- rMGIG_GS(la, Psi, Ga, mc = 20000L, burn = 1000L)
 
 sims11 <- sims[1L, 1L, ]
 plot(sims11, type = "l")
@@ -113,3 +113,44 @@ plot(sims11, type = "l")
 plot(density(sims11))
 mean(sims11)
 
+dets <- numeric(dim(sims)[3L])
+for(i in seq_along(dets)) {
+  dets[i] <- det(sims[, , i])
+}
+plot(dets)
+mean(dets)
+
+Bessel2(Psi %*% Ga / 4, la + 1 + 3/2) / Bessel2(Psi %*% Ga / 4, la +3/2) / det(Ga / 2)
+Bessel2(Psi %*% Ga / 4, la + 1) / Bessel2(Psi %*% Ga / 4, la) / det(Ga / 2)
+
+library(HypergeoMat)
+
+BesselA(20L, Psi %*% Ga / 4, la + 1) / BesselA(20L, Psi %*% Ga / 4, la) / sqrt(det(Psi / 2))
+
+
+Bessel1 <- function(t, nu) {
+  2 * besselK(2*sqrt(t), nu) / t^(nu/2) # je trouve K(2*sqrt(t))
+}
+
+t <- 4
+nu <- 3
+Bessel1(t, nu)
+Bessel1(t, -nu) / t^nu
+
+lambda <- 0.1
+delta <- 1/2
+BesselA(20L, lambda, delta) - BesselA(20L, -lambda, -delta) /lambda^delta
+-sin(pi*delta)/pi * Bessel1(lambda, delta)
+
+
+Bessel2 <- function(Z, delta) {
+  trZ <- sum(diag(Z))
+  detZ <- det(Z)
+  f <- function(x) {
+    sqrt(pi)*exp(-x)*exp(-trZ/x)*Bessel1(detZ/x^2, delta)/x^(delta+3/2)
+  }
+  integrate(f, 0, Inf)$value
+}
+
+Z <- toeplitz(2:1)
+Bessel2(Z, 3)
