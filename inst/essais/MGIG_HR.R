@@ -81,5 +81,6 @@ for(i in seq_along(dets)) {
 plot(dets)
 mean(dets)
 
-Bessel2(Psi %*% Ga / 4, la + 1 - 3/2) / Bessel2(Psi %*% Ga / 4, la - 3/2) * det(Ga / 2)
-Bessel2(Psi %*% Ga / 4, la + 1) / Bessel2(Psi %*% Ga / 4, la) * det(Ga / 2)
+Bessel2(Psi %*% Ga / 4, la + 1 - 3/2) / Bessel2(Psi %*% Ga / 4, la - 3/2) / det(Ga / 2)
+Bessel2(Psi %*% Ga / 4, la + 1) / Bessel2(Psi %*% Ga / 4, la) / det(Ga / 2)
+

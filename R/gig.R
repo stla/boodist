@@ -203,7 +203,7 @@ GeneralizedInverseGaussian <- R6Class(
       theta  <- private[[".theta"]]
       eta    <- private[[".eta"]]
       lambda <- private[[".lambda"]]
-      eta * besselK(theta, lambda + 1) / besselK(theta, lambda)
+      c(eta * besselK(theta, lambda + 1) / besselK(theta, lambda))
     },
 
     #' @description Mode of the generalized inverse Gaussian distribution.
@@ -231,7 +231,7 @@ GeneralizedInverseGaussian <- R6Class(
       lambda <- private[[".lambda"]]
       K <- besselK(theta, lambda)
       eta^2 *
-        (besselK(theta, lambda + 2) / K - (besselK(theta, lambda + 1) / K)^2)
+        c(besselK(theta, lambda + 2) / K - (besselK(theta, lambda + 1) / K)^2)
     }
 
   )
