@@ -1,6 +1,7 @@
 library(boodist)
 library(TruncatedNormal)
 library(mvtnorm)
+library(gtools)
 
 dat <- iris[, 3:5]
 d <- 2L
@@ -149,7 +150,12 @@ rMGIG <- function(q, z, A, b, d) {
   chol2inv(chol(x*H + W))
 }
 
-rMGIG(
-  q = nu0+t0[g]/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
-)
+Delta <- array(NA_real_, dim = c(d, d, G))
 
+for(g in 1L:G) {
+  Delta[, , g] <- rMGIG(
+    q = nu0+t0[g]/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
+  )
+}
+
+rho <- rdirichlet(1, a0)
