@@ -26,7 +26,7 @@ W <- rWishart(nsims, q, A)
 for(i in 1L:nsims) {
   # x <- gig$r(1L)
   # W <- rWishart(1L, q, A)[, , 1L]
-  sims[, , i] <- x[i]*H + W[, , i]
+  sims[, , i] <- chol2inv(chol(x[i]*H + W[, , i]))
 }
 sims <- sims[, , -(1L:2000L)]
 
