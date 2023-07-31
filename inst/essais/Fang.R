@@ -20,6 +20,8 @@ a2 <- matrix(1, nrow = G, ncol = d)
 a3 <- rep(1, G)
 a4 <- rep(1, G)
 a5 <- array(1, dim = c(d, d, G))
+nu0 <- 1
+Lambda0 <- diag(d)
 
 # initialization
 gamma <- delta <- rep(1, G)
@@ -76,8 +78,8 @@ newu <- function(i) {
   iSigma <- Lambda[[g]]
   mu <- Mu[g, ]
   q <- sqrt(delta[g]^2 + t(y-mu) %*% iSigma %*% (y-mu))
-  alpha <- alpha[g]
-  GeneralizedInverseGaussian$new(q*alpha, alpha/q, (d+1)/2)$r(1L)
+  alph <- alpha[g]
+  GeneralizedInverseGaussian$new(q*alph, alph/q, (d+1)/2)$r(1L)
 }
 
 u <- vapply(1L:N, newu, numeric(1L))
@@ -88,6 +90,7 @@ t2 <- matrix(NA_real_, nrow = G, ncol = d)
 t3 <- rep(NA_real_, G)
 t4 <- rep(NA_real_, G)
 t5 <- array(0, dim = c(d, d, G))
+S0 <- array(0, dim = c(d, d, G))
 
 y <- cbind(dat$x1, dat$x2)
 
@@ -99,6 +102,7 @@ for(g in 1L:G) {
   t4[g] <- sum(1/u[i]) / 2
   for(j in i) {
     t5[, , g] <- t5[, , g] + crossprod(y[j, , drop = FALSE]) / u[j]
+    S0[, , g] <- S0[, , g] + crossprod(y[j, , drop = FALSE] - Mu[g, ]) / u[j]
   }
 }
 
@@ -132,3 +136,19 @@ f <- function(g) {
 MuBeta <- t(vapply(1L:G, f, numeric(2L*d)))
 
 
+rMGIG <- function(q, z, A, b, d) {
+  p <- q + (1-d)/2
+  H <- tcrossprod(z)
+  theta <- sqrt(c(t(z) %*% A %*% z * b))
+  eta <- sqrt(b) / sqrt(c(t(z) %*% A %*% z))
+  gig <- GeneralizedInverseGaussian$new(
+    theta = theta, eta = eta, lambda = -p
+  )
+  x <- gig$r(1L)
+  W <- rWishart(1L, q, A)[, , 1L]
+  chol2inv(chol(x[i]*H + W[, , i]))
+}
+
+rMGIG(
+  q = nu0+t0/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
+)

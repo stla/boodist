@@ -69,3 +69,18 @@ Bessel2 <- function(Z, delta) {
   }
   integrate(f, 0, Inf)$value
 }
+
+
+
+rMGIG <- function(q, z, A, b, d) {
+  p <- q + (1-d)/2
+  H <- tcrossprod(z)
+  theta <- sqrt(c(t(z) %*% A %*% z * b))
+  eta <- sqrt(b) / sqrt(c(t(z) %*% A %*% z))
+  gig <- GeneralizedInverseGaussian$new(
+    theta = theta, eta = eta, lambda = -p
+  )
+  x <- gig$r(1L)
+  W <- rWishart(1L, q, A)[, , 1L]
+  chol2inv(chol(x[i]*H + W[, , i]))
+}
