@@ -1,5 +1,6 @@
 library(boodist)
 library(TruncatedNormal)
+library(mvtnorm)
 
 dat <- iris[, 3:5]
 d <- 2L
@@ -114,4 +115,20 @@ delta <- sqrt(rgamma(G, shape = a0/2+1, rate = a4 - a0^2/(4*a3)))
 gamma <- vapply(1:G, function(g) {
   rtnorm(1, a0[g]*delta[g]/(2*a3[g]), 1/(2*a3[g]), lb = 0, ub = Inf)
 }, numeric(1L))
+
+h <- 4*a3*a4 - a0^2
+f <- function(g) {
+  D <- Delta[, , g]
+  Sigma11 <- 2*a3[g] * D / h[g]
+  iD <- Lambda[[g]]
+  Sigma22 <- 2*a4[g] * iD / h[g]
+  Sigma12 <- - a0[g] * diag(d) / h[g]
+  Sigma <- rbind(cbind(Sigma11, Sigma12), cbind(Sigma12, Sigma22))
+  m1 <- (2*a2[g, ]*a3[g] - a0[g]*a1[g, ]) / h[g]
+  m2 <- iD %*% (2*a1[g, ]*a4[g] - a0[g]*a2[g, ]) / h[g]
+  m <- c(m1, m2)
+  c(rmvnorm(1L, mean = m, sigma = Sigma))
+}
+MuBeta <- t(vapply(1L:G, f, numeric(2L*d)))
+
 
