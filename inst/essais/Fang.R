@@ -9,7 +9,7 @@ names(dat) <- c("x1", "x2", "Group")
 Z <- model.matrix(~ 0 + Group, data=dat)
 names(Z) <- c("z1", "z2", "z3")
 dat <- cbind(dat, as.data.frame(Z))
-dat$u <- rep(1, N)
+dat$u <- rep(10, N)
 groups <- split(dat, ~ Group)
 G <- 3L
 
@@ -146,9 +146,10 @@ rMGIG <- function(q, z, A, b, d) {
   )
   x <- gig$r(1L)
   W <- rWishart(1L, q, A)[, , 1L]
-  chol2inv(chol(x[i]*H + W[, , i]))
+  chol2inv(chol(x*H + W))
 }
 
 rMGIG(
-  q = nu0+t0/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
+  q = nu0+t0[g]/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
 )
+
