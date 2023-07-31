@@ -1,4 +1,5 @@
 library(boodist)
+library(TruncatedNormal)
 
 dat <- iris[, 3:5]
 d <- 2L
@@ -99,3 +100,18 @@ for(g in 1L:G) {
     t5[, , g] <- t5[, , g] + crossprod(y[j, , drop = FALSE]) / u[j]
   }
 }
+
+
+a0 <- a0 + t0
+a1 <- a1 + t1
+a2 <- a2 + t2
+a3 <- a3 + t3
+a4 <- a4 + t4
+a5 <- a5 + t5
+
+
+delta <- sqrt(rgamma(G, shape = a0/2+1, rate = a4 - a0^2/(4*a3)))
+gamma <- vapply(1:G, function(g) {
+  rtnorm(1, a0[g]*delta[g]/(2*a3[g]), 1/(2*a3[g]), lb = 0, ub = Inf)
+}, numeric(1L))
+
