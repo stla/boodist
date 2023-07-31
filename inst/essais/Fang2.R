@@ -22,6 +22,7 @@ dat <- iris[, 3:5]
 d <- 2L
 N <- nrow(dat)
 names(dat) <- c("x1", "x2", "Group")
+dat$id <- as.character(1L:N)
 Z <- model.matrix(~ 0 + Group, data = dat)
 names(Z) <- c("z1", "z2", "z3")
 dat <- cbind(dat, as.data.frame(Z))
@@ -36,7 +37,7 @@ G <- length(Levels)
 a0 <- rep(1, G)
 a1 <- matrix(1, nrow = G, ncol = d)
 a2 <- matrix(1, nrow = G, ncol = d)
-a3 <- rep(1, G)
+a3 <- rep(100, G)
 a4 <- rep(1, G)
 a5 <- array(1, dim = c(d, d, G))
 nu0 <- d
@@ -69,10 +70,12 @@ for(k in 1L:10L) {
     beta <- Beta[g, ]
     u <- df$u
     Z <- vapply(1L:n, function(i) {
-      v <- y[i, ] - mu - u[i] * Sigma %*% beta
-      - t(v) %*% iSigma %*% v / (2*u[i])
+      v <- y[i, ] - mu - c(u[i] * Sigma %*% beta)
+      #- t(v) %*% iSigma %*% v / (2*u[i])
+      dmvnorm(t(v), sigma = 2*u[i]*Sigma, log = FALSE)
     }, numeric(1L))
-    exp(n/2 * EigenR::Eigen_logabsdet(Sigma) + sum(Z))
+    #1/det(Sigma)^(n/2) * sum(Z)
+    prod(Z)
   }
   PrZ <- rho * vapply(1L:G, f, numeric(1L))
   Z <- rmultinom(N, 1L, PrZ)
@@ -114,6 +117,10 @@ for(k in 1L:10L) {
     groups[[g]] <- df
   }
 
+  # gindices...
+  dat <- do.call(rbind, groups)
+  groups <- split(dat, grp)
+
 
   t0 <- rowSums(Z)
   t1 <- matrix(NA_real_, nrow = G, ncol = d)
@@ -122,7 +129,6 @@ for(k in 1L:10L) {
   t4 <- rep(NA_real_, G)
   t5 <- array(0, dim = c(d, d, G))
   S0 <- array(0, dim = c(d, d, G))
-  y <- cbind(dat$x1, dat$x2)
   for(g in 1L:G) {
     df <- groups[[g]]
     y <- as.matrix(df[, c("x1", "x2")])
@@ -152,9 +158,9 @@ for(k in 1L:10L) {
   a3prev <- a3
   a3 <- a3 + t3
   a4 <- a4 + t4
-  a5 <- a5 + t5
+  a5 <- a5 + t5 # not used!..
 
-  delta <- sqrt(rgamma(G, shape = a0/2+1, rate = a4 - a0^2/(4*a3prev)))
+  delta <- sqrt(rgamma(G, shape = a0/2+1, rate = a4 - a0^2/(4*a3)))
   gamma <- vapply(1:G, function(g) {
     rtnorm(1, a0[g]*delta[g]/(2*a3[g]), 1/(2*a3[g]), lb = 0, ub = Inf)
   }, numeric(1L))
@@ -187,6 +193,7 @@ for(k in 1L:10L) {
 
   rho <- rdirichlet(1L, a0)[1L, ]
   o <- order(rho)
+  rho <- rho[o]
   groups <- groups[o]
   Levels <- names(groups)
 }
