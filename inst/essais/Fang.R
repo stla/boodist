@@ -2,6 +2,7 @@ library(boodist)
 library(TruncatedNormal)
 library(mvtnorm)
 library(gtools)
+library(ggplot2)
 
 rMGIG <- function(q, z, A, b, d) {
   p <- q + (1-d)/2
@@ -21,13 +22,15 @@ dat <- iris[, 3:5]
 d <- 2L
 N <- nrow(dat)
 names(dat) <- c("x1", "x2", "Group")
-Z <- model.matrix(~ 0 + Group, data=dat)
+Z <- model.matrix(~ 0 + Group, data = dat)
 names(Z) <- c("z1", "z2", "z3")
 dat <- cbind(dat, as.data.frame(Z))
 dat$u <- rep(10, N)
 groups <- split(dat, ~ Group)
 Levels <- names(groups)
 G <- length(Levels)
+
+ggplot(dat) + geom_point(aes(x = x1, y = x2, color = Group))
 
 # prior parameters
 a0 <- rep(1, G)
@@ -142,15 +145,18 @@ f <- function(g) {
   c(rmvnorm(1L, mean = m, sigma = Sigma))
 }
 MuBeta <- t(vapply(1L:G, f, numeric(2L*d)))
+Mu <- MuBeta[, 1L:d]
+Beta <- MuBeta[, -(1L:d)]
 
 Delta <- array(NA_real_, dim = c(d, d, G))
 for(g in 1L:G) {
   Delta[, , g] <- rMGIG(
-    q = nu0+t0[g]/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
+    q = (nu0+t0[g])/2, z = Beta[g, ], A = Lambda0 + S0[, , g], b = 2*t3[g], d = d
   )
 }
+Lambda <- apply(Delta, 3, solve, simplify = FALSE)
 
-rho <- rdirichlet(1, a0)
+rho <- rdirichlet(1L, a0)[1L, ]
 o <- order(rho)
 groups <- groups[o]
 Levels <- names(groups)
