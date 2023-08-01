@@ -22,22 +22,33 @@ dat <- iris[, 3:5]
 d <- 2L
 N <- nrow(dat)
 names(dat) <- c("x1", "x2", "Group")
+# dat$x1 <- log(dat$x1)
+# dat$x2 <- log(dat$x2)
 dat$id <- as.character(1L:N)
 Z <- model.matrix(~ 0 + Group, data = dat)
 names(Z) <- c("z1", "z2", "z3")
 dat <- cbind(dat, as.data.frame(Z))
-dat$u <- rep(10, N)
+dat$u <- rep(0.011, N)
 groups <- split(dat, ~ Group)
 Levels <- names(groups)
 G <- length(Levels)
 
+set.seed(666)
+for(g in 1L:G) {
+  df <- groups[[g]]
+  sims <- rmvnorm(50L, mean = c(5*g, 5*g))
+  df$x1 <- sims[, 1L]
+  df$x2 <- sims[, 2L]
+  groups[[g]] <- df
+}
+dat <- do.call(rbind, groups)
 #ggplot(dat) + geom_point(aes(x = x1, y = x2, color = Group))
 
 # prior parameters
 a0 <- rep(1, G)
 a1 <- matrix(1, nrow = G, ncol = d)
 a2 <- matrix(1, nrow = G, ncol = d)
-a3 <- rep(100, G)
+a3 <- rep(2, G)
 a4 <- rep(1, G)
 a5 <- array(1, dim = c(d, d, G))
 nu0 <- d
@@ -59,6 +70,7 @@ rho <- vapply(groups, nrow, integer(1L)) / nrow(dat)
 
 for(k in 1L:10L) {
 
+  ig <- InverseGaussian$new(gamma[g], delta[g])
   # Gibbs step 1
   f <- function(g) {
     df <- groups[[g]]
@@ -72,12 +84,15 @@ for(k in 1L:10L) {
     Z <- vapply(1L:n, function(i) {
       v <- y[i, ] - mu - c(u[i] * Sigma %*% beta)
       #- t(v) %*% iSigma %*% v / (2*u[i])
-      dmvnorm(t(v), sigma = 2*u[i]*Sigma, log = FALSE)
+      dmvnorm(t(v), sigma = 2*u[i]*Sigma, log = TRUE) +
+        ig$d(u[i], log = TRUE)
     }, numeric(1L))
     #1/det(Sigma)^(n/2) * sum(Z)
-    prod(Z)
+    sum(Z)
   }
-  PrZ <- rho * vapply(1L:G, f, numeric(1L))
+  logPrZ <- vapply(1L:G, f, numeric(1L))
+  logPrZ <- logPrZ - max(logPrZ)
+  PrZ <- rho * exp(logPrZ)
   Z <- rmultinom(N, 1L, PrZ)
   grp <- apply(Z, 2L, function(z) {
     Levels[which(z == 1L)]
@@ -120,6 +135,7 @@ for(k in 1L:10L) {
   # gindices...
   dat <- do.call(rbind, groups)
   groups <- split(dat, grp)
+  #G <- length(groups)
 
 
   t0 <- rowSums(Z)
