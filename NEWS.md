@@ -1,3 +1,3 @@
-# boodist 0.1.0
+# boodist 1.0.0
 
 First release.
