@@ -24,7 +24,9 @@ jobs:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
           sudo apt-get install --yes valgrind
+        run |
           sudo apt-get update
+        run |
           sudo apt-get install --fix-missing
 
       - uses: r-lib/actions/setup-r@v2
