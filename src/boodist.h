@@ -10,6 +10,8 @@
 #include <boost/math/distributions/inverse_gaussian.hpp>
 #include <boost/math/distributions/skew_normal.hpp>
 #include <boost/math/distributions/non_central_chi_squared.hpp>
+#include <boost/math/distributions/beta.hpp>
+#include <boost/math/distributions/non_central_beta.hpp>
 using namespace boost::math;
 #include <RcppNumerical.h>
 using namespace Numer;
