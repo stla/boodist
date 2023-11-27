@@ -58,6 +58,12 @@ double beta_mean(double a, double b) {
 }
 
 // [[Rcpp::export]]
+double beta_median(double a, double b) {
+  boost::math::beta_distribution dist(a, b);
+  return median(dist);
+}
+
+// [[Rcpp::export]]
 double beta_variance(double a, double b) {
   boost::math::beta_distribution dist(a, b);
   return variance(dist);

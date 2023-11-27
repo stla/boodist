@@ -77,28 +77,32 @@ rcpp_dbeta <- function(x, a, b, delta) {
     .Call(`_boodist_rcpp_dbeta`, x, a, b, delta)
 }
 
-rcpp_pbeta <- function(q, a, b, delta, lower) {
-    .Call(`_boodist_rcpp_pbeta`, q, a, b, delta, lower)
+rcpp_pbeta <- function(q, a, b, lower) {
+    .Call(`_boodist_rcpp_pbeta`, q, a, b, lower)
 }
 
-rcpp_qbeta <- function(p, a, b, delta, lower) {
-    .Call(`_boodist_rcpp_qbeta`, p, a, b, delta, lower)
+rcpp_qbeta <- function(p, a, b, lower) {
+    .Call(`_boodist_rcpp_qbeta`, p, a, b, lower)
 }
 
-beta_mean <- function(a, b, delta) {
-    .Call(`_boodist_beta_mean`, a, b, delta)
+beta_mean <- function(a, b) {
+    .Call(`_boodist_beta_mean`, a, b)
 }
 
-beta_variance <- function(a, b, delta) {
-    .Call(`_boodist_beta_variance`, a, b, delta)
+beta_median <- function(a, b) {
+    .Call(`_boodist_beta_median`, a, b)
 }
 
-beta_sd <- function(a, b, delta) {
-    .Call(`_boodist_beta_sd`, a, b, delta)
+beta_variance <- function(a, b) {
+    .Call(`_boodist_beta_variance`, a, b)
 }
 
-beta_mode <- function(a, b, delta) {
-    .Call(`_boodist_beta_mode`, a, b, delta)
+beta_sd <- function(a, b) {
+    .Call(`_boodist_beta_sd`, a, b)
+}
+
+beta_mode <- function(a, b) {
+    .Call(`_boodist_beta_mode`, a, b)
 }
 
 beta_skewness <- function(a, b) {
@@ -111,6 +115,38 @@ beta_kurtosis <- function(a, b) {
 
 beta_kurtosis_excess <- function(a, b) {
     .Call(`_boodist_beta_kurtosis_excess`, a, b)
+}
+
+rcpp_dbetanc <- function(x, a, b, delta) {
+    .Call(`_boodist_rcpp_dbetanc`, x, a, b, delta)
+}
+
+rcpp_pbetanc <- function(q, a, b, delta, lower) {
+    .Call(`_boodist_rcpp_pbetanc`, q, a, b, delta, lower)
+}
+
+rcpp_qbetanc <- function(p, a, b, delta, lower) {
+    .Call(`_boodist_rcpp_qbetanc`, p, a, b, delta, lower)
+}
+
+betanc_mean <- function(a, b, delta) {
+    .Call(`_boodist_betanc_mean`, a, b, delta)
+}
+
+betanc_median <- function(a, b, delta) {
+    .Call(`_boodist_betanc_median`, a, b, delta)
+}
+
+betanc_variance <- function(a, b, delta) {
+    .Call(`_boodist_betanc_variance`, a, b, delta)
+}
+
+betanc_sd <- function(a, b, delta) {
+    .Call(`_boodist_betanc_sd`, a, b, delta)
+}
+
+betanc_mode <- function(a, b, delta) {
+    .Call(`_boodist_betanc_mode`, a, b, delta)
 }
 
 find_chisq_ncp <- function(nu, q, p) {

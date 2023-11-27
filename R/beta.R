@@ -50,7 +50,7 @@ Beta <- R6Class(
     #' @param a,b shape parameters, \code{> 0}
     #' @param delta non-centrality parameter, \code{>= 0}
     #' @return A \code{Beta} object.
-    "initialize" = function(a, b, delta) {
+    "initialize" = function(a, b, delta = 0) {
       stopifnot(a > 0, b > 0, delta >= 0)
       private[[".a"]]     <- a
       private[[".b"]]     <- b
@@ -64,7 +64,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      rcpp_dbeta(x, a, b, delta)
+      if(delta == 0) {
+        rcpp_dbeta(x, a, b)
+      } else {
+        rcpp_dbetanc(x, a, b, delta)
+      }
     },
 
     #' @description Cumulative distribution function of the beta
@@ -76,7 +80,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      rcpp_beta(q, a, b, delta, lower)
+      if(delta == 0) {
+        rcpp_pbeta(q, a, b, lower)
+      } else {
+        rcpp_pbetanc(q, a, b, delta, lower)
+      }
     },
 
     #' @description Quantile function of the beta distribution.
@@ -87,7 +95,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      rcpp_qbeta(p, a, b, delta, lower)
+      if(delta == 0) {
+        rcpp_qbeta(p, a, b, lower)
+      } else {
+        rcpp_qbetanc(p, a, b, delta, lower)
+      }
     },
 
     #' @description Sampling from the beta distribution.
@@ -106,7 +118,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      beta_mean(a, b, delta)
+      if(delta == 0) {
+        beta_mean(a, b)
+      } else {
+        betanc_mean(a, b, delta)
+      }
     },
 
     #' @description Median of the beta distribution.
@@ -115,7 +131,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      beta_median(a, b, delta)
+      if(delta == 0) {
+        beta_median(a, b)
+      } else {
+        betanc_median(a, b, delta)
+      }
     },
 
     #' @description Mode of the beta distribution.
@@ -124,7 +144,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      beta_mode(a, b, delta)
+      if(delta == 0) {
+        beta_mode(a, b)
+      } else {
+        betanc_mode(a, b, delta)
+      }
     },
 
     #' @description Standard deviation of the beta distribution.
@@ -133,7 +157,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      beta_sd(a, b, delta)
+      if(delta == 0) {
+        beta_sd(a, b)
+      } else {
+        betanc_sd(a, b, delta)
+      }
     },
 
     #' @description Variance of the beta distribution.
@@ -142,7 +170,11 @@ Beta <- R6Class(
       a     <- private[[".a"]]
       b     <- private[[".b"]]
       delta <- private[[".delta"]]
-      beta_variance(a, b, delta)
+      if(delta == 0) {
+        beta_variance(a, b)
+      } else {
+        betanc_variance(a, b, delta)
+      }
     },
 
     #' @description Skewness of the beta distribution.

@@ -58,6 +58,12 @@ double betanc_mean(double a, double b, double delta) {
 }
 
 // [[Rcpp::export]]
+double betanc_median(double a, double b, double delta) {
+  boost::math::non_central_beta dist(a, b, delta);
+  return median(dist);
+}
+
+// [[Rcpp::export]]
 double betanc_variance(double a, double b, double delta) {
   boost::math::non_central_beta dist(a, b, delta);
   return variance(dist);
