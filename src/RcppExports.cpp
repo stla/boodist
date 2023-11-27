@@ -238,6 +238,138 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_dbeta
+Rcpp::NumericVector rcpp_dbeta(Rcpp::NumericVector x, double a, double b, double delta);
+RcppExport SEXP _boodist_rcpp_dbeta(SEXP xSEXP, SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_dbeta(x, a, b, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pbeta
+Rcpp::NumericVector rcpp_pbeta(Rcpp::NumericVector q, double a, double b, double delta, bool lower);
+RcppExport SEXP _boodist_rcpp_pbeta(SEXP qSEXP, SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_pbeta(q, a, b, delta, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_qbeta
+Rcpp::NumericVector rcpp_qbeta(Rcpp::NumericVector p, double a, double b, double delta, bool lower);
+RcppExport SEXP _boodist_rcpp_qbeta(SEXP pSEXP, SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP, SEXP lowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type p(pSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    Rcpp::traits::input_parameter< bool >::type lower(lowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_qbeta(p, a, b, delta, lower));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_mean
+double beta_mean(double a, double b, double delta);
+RcppExport SEXP _boodist_beta_mean(SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_mean(a, b, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_variance
+double beta_variance(double a, double b, double delta);
+RcppExport SEXP _boodist_beta_variance(SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_variance(a, b, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_sd
+double beta_sd(double a, double b, double delta);
+RcppExport SEXP _boodist_beta_sd(SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_sd(a, b, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_mode
+double beta_mode(double a, double b, double delta);
+RcppExport SEXP _boodist_beta_mode(SEXP aSEXP, SEXP bSEXP, SEXP deltaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_mode(a, b, delta));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_skewness
+double beta_skewness(double a, double b);
+RcppExport SEXP _boodist_beta_skewness(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_skewness(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_kurtosis
+double beta_kurtosis(double a, double b);
+RcppExport SEXP _boodist_beta_kurtosis(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_kurtosis(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
+// beta_kurtosis_excess
+double beta_kurtosis_excess(double a, double b);
+RcppExport SEXP _boodist_beta_kurtosis_excess(SEXP aSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(beta_kurtosis_excess(a, b));
+    return rcpp_result_gen;
+END_RCPP
+}
 // find_chisq_ncp
 double find_chisq_ncp(double nu, double q, double p);
 RcppExport SEXP _boodist_find_chisq_ncp(SEXP nuSEXP, SEXP qSEXP, SEXP pSEXP) {
@@ -720,6 +852,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"_boodist_t_skewness", (DL_FUNC) &_boodist_t_skewness, 2},
     {"_boodist_t_kurtosis", (DL_FUNC) &_boodist_t_kurtosis, 2},
     {"_boodist_t_kurtosis_excess", (DL_FUNC) &_boodist_t_kurtosis_excess, 2},
+    {"_boodist_rcpp_dbeta", (DL_FUNC) &_boodist_rcpp_dbeta, 4},
+    {"_boodist_rcpp_pbeta", (DL_FUNC) &_boodist_rcpp_pbeta, 5},
+    {"_boodist_rcpp_qbeta", (DL_FUNC) &_boodist_rcpp_qbeta, 5},
+    {"_boodist_beta_mean", (DL_FUNC) &_boodist_beta_mean, 3},
+    {"_boodist_beta_variance", (DL_FUNC) &_boodist_beta_variance, 3},
+    {"_boodist_beta_sd", (DL_FUNC) &_boodist_beta_sd, 3},
+    {"_boodist_beta_mode", (DL_FUNC) &_boodist_beta_mode, 3},
+    {"_boodist_beta_skewness", (DL_FUNC) &_boodist_beta_skewness, 2},
+    {"_boodist_beta_kurtosis", (DL_FUNC) &_boodist_beta_kurtosis, 2},
+    {"_boodist_beta_kurtosis_excess", (DL_FUNC) &_boodist_beta_kurtosis_excess, 2},
     {"_boodist_find_chisq_ncp", (DL_FUNC) &_boodist_find_chisq_ncp, 3},
     {"_boodist_find_chisq_df", (DL_FUNC) &_boodist_find_chisq_df, 3},
     {"_boodist_rgig_rcpp", (DL_FUNC) &_boodist_rgig_rcpp, 3},

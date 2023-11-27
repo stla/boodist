@@ -73,6 +73,46 @@ t_kurtosis_excess <- function(nu, delta) {
     .Call(`_boodist_t_kurtosis_excess`, nu, delta)
 }
 
+rcpp_dbeta <- function(x, a, b, delta) {
+    .Call(`_boodist_rcpp_dbeta`, x, a, b, delta)
+}
+
+rcpp_pbeta <- function(q, a, b, delta, lower) {
+    .Call(`_boodist_rcpp_pbeta`, q, a, b, delta, lower)
+}
+
+rcpp_qbeta <- function(p, a, b, delta, lower) {
+    .Call(`_boodist_rcpp_qbeta`, p, a, b, delta, lower)
+}
+
+beta_mean <- function(a, b, delta) {
+    .Call(`_boodist_beta_mean`, a, b, delta)
+}
+
+beta_variance <- function(a, b, delta) {
+    .Call(`_boodist_beta_variance`, a, b, delta)
+}
+
+beta_sd <- function(a, b, delta) {
+    .Call(`_boodist_beta_sd`, a, b, delta)
+}
+
+beta_mode <- function(a, b, delta) {
+    .Call(`_boodist_beta_mode`, a, b, delta)
+}
+
+beta_skewness <- function(a, b) {
+    .Call(`_boodist_beta_skewness`, a, b)
+}
+
+beta_kurtosis <- function(a, b) {
+    .Call(`_boodist_beta_kurtosis`, a, b)
+}
+
+beta_kurtosis_excess <- function(a, b) {
+    .Call(`_boodist_beta_kurtosis_excess`, a, b)
+}
+
 find_chisq_ncp <- function(nu, q, p) {
     .Call(`_boodist_find_chisq_ncp`, nu, q, p)
 }
