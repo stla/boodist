@@ -6,7 +6,7 @@ Rcpp::NumericVector rcpp_dbeta(
 ){
   int n = x.size();
   Rcpp::NumericVector out(n);
-  boost::math::non_central_beta dist(a, b, delta);
+  boost::math::beta_distribution dist(a, b);
   for(int i = 0; i < n; i++) {
     out(i) = boost::math::pdf(dist, x(i));
   }
@@ -15,11 +15,11 @@ Rcpp::NumericVector rcpp_dbeta(
 
 // [[Rcpp::export]]
 Rcpp::NumericVector rcpp_pbeta(
-  Rcpp::NumericVector q, double a, double b, double delta, bool lower
+  Rcpp::NumericVector q, double a, double b, bool lower
 ){
   int n = q.size();
   Rcpp::NumericVector out(n);
-  boost::math::non_central_beta dist(a, b, delta);
+  boost::math::beta_distribution dist(a, b);
   if(lower) {
     for(int i = 0; i < n; i++) {
       out(i) = boost::math::cdf(dist, q(i));
@@ -34,11 +34,11 @@ Rcpp::NumericVector rcpp_pbeta(
 
 // [[Rcpp::export]]
 Rcpp::NumericVector rcpp_qbeta(
-  Rcpp::NumericVector p, double a, double b, double delta, bool lower
+  Rcpp::NumericVector p, double a, double b, bool lower
 ){
   int n = p.size();
   Rcpp::NumericVector out(n);
-  boost::math::non_central_beta dist(a, b, delta);
+  boost::math::beta_distribution dist(a, b);
   if(lower) {
     for(int i = 0; i < n; i++) {
       out(i) = boost::math::quantile(dist, p(i));
@@ -52,26 +52,26 @@ Rcpp::NumericVector rcpp_qbeta(
 }
 
 // [[Rcpp::export]]
-double beta_mean(double a, double b, double delta) {
-  boost::math::non_central_beta dist(a, b, delta);
+double beta_mean(double a, double b) {
+  boost::math::beta_distribution dist(a, b);
   return mean(dist);
 }
 
 // [[Rcpp::export]]
-double beta_variance(double a, double b, double delta) {
-  boost::math::non_central_beta dist(a, b, delta);
+double beta_variance(double a, double b) {
+  boost::math::beta_distribution dist(a, b);
   return variance(dist);
 }
 
 // [[Rcpp::export]]
-double beta_sd(double a, double b, double delta) {
-  boost::math::non_central_beta dist(a, b, delta);
+double beta_sd(double a, double b) {
+  boost::math::beta_distribution dist(a, b);
   return standard_deviation(dist);
 }
 
 // [[Rcpp::export]]
-double beta_mode(double a, double b, double delta) {
-  boost::math::non_central_beta dist(a, b, delta);
+double beta_mode(double a, double b) {
+  boost::math::beta_distribution dist(a, b);
   return mode(dist);
 }
 
