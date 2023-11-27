@@ -38,7 +38,7 @@ Rcpp::NumericVector rcpp_qbetanc(
 ){
   int n = p.size();
   Rcpp::NumericVector out(n);
-  boost::math::non_central_beta dist(a, b);
+  boost::math::non_central_beta dist(a, b, delta);
   if(lower) {
     for(int i = 0; i < n; i++) {
       out(i) = boost::math::quantile(dist, p(i));
